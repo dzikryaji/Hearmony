@@ -31,4 +31,13 @@
         <item name="android:textColor">@color/primary_green</item>
     </style>
 
+    <style name="Widget.Auth.Button" parent="Widget.Base.Button">
+        <item name="android:background">@drawable/bg_auth_button</item>
+    </style>
+
+    <style name="Widget.Disabled.Button" parent="Widget.Base.Button">
+        <item name="android:background">@drawable/bg_disabled</item>
+        <item name="android:textColor">#AFBACA</item>
+    </style>
+
 </resources>

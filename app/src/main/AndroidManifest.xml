@@ -13,9 +13,16 @@
         android:theme="@style/Theme.Hearmony"
         tools:targetApi="31">
         <activity
-            android:name=".OnBoardingActivity"
-            android:theme="@style/Theme.Hearmony.LightStatusBar"
+            android:name=".RegisterActivity"
             android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".OnBoardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Hearmony.LightStatusBar" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">

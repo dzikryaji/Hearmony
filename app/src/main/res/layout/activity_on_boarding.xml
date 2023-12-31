@@ -24,12 +24,14 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="42dp"
             android:text="Login" />
 
         <Button
+            android:id="@+id/btn_register"
             style="@style/Widget.Outline.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
