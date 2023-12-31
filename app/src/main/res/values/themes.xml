@@ -1,15 +1,34 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Hearmony" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Base.Theme.Hearmony" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/primary_green</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="buttonStyle">@style/Widget.Base.Button</item>
     </style>
 
     <style name="Theme.Hearmony" parent="Base.Theme.Hearmony" />
+
+    <style name="Theme.Hearmony.LightStatusBar" parent="Base.Theme.Hearmony">
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Widget.Base.Button" parent="Widget.AppCompat.Button">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:background">@drawable/bg_button</item>
+        <item name="android:paddingVertical" tools:targetApi="o">12dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/manrope_extrabold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.Outline.Button" parent="Widget.Base.Button">
+        <item name="android:background">@drawable/bg_outline_button</item>
+        <item name="android:textColor">@color/primary_green</item>
+    </style>
+
 </resources>
