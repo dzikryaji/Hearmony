@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="34dp"
-        android:paddingBottom="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="30dp">
 
         <ImageView
             android:id="@+id/iv_logo"
@@ -39,7 +39,7 @@
             android:id="@+id/cv_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             app:cardCornerRadius="6dp">
 
             <LinearLayout
@@ -126,6 +126,7 @@
                 android:background="@drawable/bg_auth_edittext"
                 android:fontFamily="@font/manrope"
                 android:hint="johndoe@email.com"
+                android:inputType="textEmailAddress"
                 android:paddingStart="45dp"
                 android:textColorHint="@color/gray"
                 android:textSize="14sp" />
