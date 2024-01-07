@@ -1,4 +1,4 @@
-package das.mobile.hearmony;
+package das.mobile.hearmony.activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,6 +13,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
+import das.mobile.hearmony.adapter.OnBoardingPagerAdapter;
+import das.mobile.hearmony.R;
 import das.mobile.hearmony.databinding.ActivityOnBoardingBinding;
 
 public class OnBoardingActivity extends AppCompatActivity {

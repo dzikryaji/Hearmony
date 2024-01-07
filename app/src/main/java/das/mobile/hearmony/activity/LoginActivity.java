@@ -1,4 +1,4 @@
-package das.mobile.hearmony;
+package das.mobile.hearmony.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -25,9 +27,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import das.mobile.hearmony.R;
 import das.mobile.hearmony.databinding.ActivityLoginBinding;
+import das.mobile.hearmony.model.User;
 
 public class LoginActivity extends AppCompatActivity {
 

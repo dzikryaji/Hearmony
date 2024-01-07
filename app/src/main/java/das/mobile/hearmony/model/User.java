@@ -1,4 +1,4 @@
-package das.mobile.hearmony;
+package das.mobile.hearmony.model;
 
 public class User {
     private String id;

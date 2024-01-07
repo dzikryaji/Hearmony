@@ -1,4 +1,4 @@
-package das.mobile.hearmony;
+package das.mobile.hearmony.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

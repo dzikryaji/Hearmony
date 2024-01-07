@@ -1,4 +1,4 @@
-package das.mobile.hearmony;
+package das.mobile.hearmony.util;
 
 import android.util.Log;
 

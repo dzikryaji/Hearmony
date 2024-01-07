@@ -2,6 +2,8 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/manrope</item>
+        <item>@font/manrope_bold</item>
         <item>@font/manrope_extrabold</item>
+        <item>@font/manrope_medium</item>
     </array>
 </resources>

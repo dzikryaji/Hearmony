@@ -8,6 +8,7 @@
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="buttonStyle">@style/Widget.Base.Button</item>
+        <item name="bottomNavigationStyle">@style/Widget.BottomNavigationView</item>
     </style>
 
     <style name="Theme.Hearmony" parent="Base.Theme.Hearmony" />
@@ -38,6 +39,16 @@
     <style name="Widget.Disabled.Button" parent="Widget.Base.Button">
         <item name="android:background">@drawable/bg_disabled</item>
         <item name="android:textColor">#AFBACA</item>
+    </style>
+
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="android:background">@drawable/bg_bottomnav</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="itemIconSize">20dp</item>
+        <item name="itemPaddingBottom">18dp</item>
+        <item name="itemPaddingTop">24dp</item>
+        <item name="itemIconTint">@drawable/color_bottomnav_item</item>
+        <item name="itemTextColor">@drawable/color_bottomnav_item</item>
     </style>
 
 </resources>

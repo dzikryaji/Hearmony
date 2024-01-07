@@ -1,4 +1,4 @@
-package das.mobile.hearmony;
+package das.mobile.hearmony.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import das.mobile.hearmony.R;
+import das.mobile.hearmony.util.AuthUtil;
 
 public class MainActivity extends AppCompatActivity {
 

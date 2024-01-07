@@ -1,4 +1,4 @@
-package das.mobile.hearmony;
+package das.mobile.hearmony.activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -8,6 +8,9 @@ import android.os.Looper;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import das.mobile.hearmony.R;
+import das.mobile.hearmony.activity.OnBoardingActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
