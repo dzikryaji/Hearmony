@@ -55,7 +55,8 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/img_onboarding3"/>
+                    android:src="@drawable/img_onboarding3"
+                    tools:ignore="MissingClass" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,6 +75,7 @@
 
 
                     <TextView
+                        android:id="@+id/phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="7dp"
