@@ -1,16 +1,17 @@
-package das.mobile.hearmony;
+package das.mobile.hearmony.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.os.Handler;
+
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +32,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import das.mobile.hearmony.R;
 import das.mobile.hearmony.databinding.ActivityLoginBinding;
+import das.mobile.hearmony.model.User;
 
 public class LoginActivity extends AppCompatActivity {
 

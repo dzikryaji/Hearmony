@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import das.mobile.hearmony.R;
-import das.mobile.hearmony.util.AuthUtil;
 
 public class MainActivity extends AppCompatActivity {
 
