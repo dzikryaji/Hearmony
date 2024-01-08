@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import das.mobile.hearmony.databinding.OnboardingItemBinding;
+import das.mobile.hearmony.databinding.ItemOnboardingBinding;
+
 
 public class OnBoardingPagerAdapter extends RecyclerView.Adapter<OnBoardingPagerAdapter.ViewHolder> {
 
@@ -23,7 +24,7 @@ public class OnBoardingPagerAdapter extends RecyclerView.Adapter<OnBoardingPager
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(OnboardingItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(ItemOnboardingBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
@@ -41,8 +42,8 @@ public class OnBoardingPagerAdapter extends RecyclerView.Adapter<OnBoardingPager
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        OnboardingItemBinding binding;
-        public ViewHolder(@NonNull OnboardingItemBinding binding) {
+        ItemOnboardingBinding binding;
+        public ViewHolder(@NonNull ItemOnboardingBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

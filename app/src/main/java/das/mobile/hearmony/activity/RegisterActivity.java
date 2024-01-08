@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import das.mobile.hearmony.R;
-import das.mobile.hearmony.activity.LoginActivity;
 import das.mobile.hearmony.databinding.ActivityRegisterBinding;
+import das.mobile.hearmony.model.User;
 
 public class RegisterActivity extends AppCompatActivity {
 

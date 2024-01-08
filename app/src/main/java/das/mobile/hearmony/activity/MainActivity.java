@@ -1,64 +1,66 @@
 package das.mobile.hearmony.activity;
 
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.MenuItem;
+import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.material.navigation.NavigationBarView;
 
 import das.mobile.hearmony.R;
+import das.mobile.hearmony.databinding.ActivityMainBinding;
+import das.mobile.hearmony.fragment.ChatFragment;
+import das.mobile.hearmony.fragment.GoalFragment;
+import das.mobile.hearmony.fragment.HomeFragment;
+import das.mobile.hearmony.fragment.InsightFragment;
+import das.mobile.hearmony.fragment.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
-
-    private TextView tvHelloWorld;
-    private Button btnLogout;
-    private FirebaseAuth mAuth;
-    private GoogleSignInClient mGoogleSignIn;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        tvHelloWorld = findViewById(R.id.tvHelloWorld);
-        btnLogout = findViewById(R.id.btnLogout);
-        mAuth = FirebaseAuth.getInstance();
-
-        // Initialize mGoogleSignIn (you need to do this based on your existing setup)
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail().build();
-        mGoogleSignIn = GoogleSignIn.getClient(this, gso);
-
-        // Set a welcome message (you can customize this based on user data)
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            String displayName = currentUser.getDisplayName();
+        // Make status bar transparent
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
-        // Set click listener for the logout button
-        btnLogout.setOnClickListener(new View.OnClickListener() {
+        HomeFragment homeFragment = new HomeFragment();
+        InsightFragment insightFragment = new InsightFragment();
+        GoalFragment goalFragment = new GoalFragment();
+        ChatFragment chatFragment = new ChatFragment();
+        ProfileFragment profileFragment = new ProfileFragment();
+
+        binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                logout();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.nav_home) {
+                    setCurrentFragment(homeFragment);
+                } else if (item.getItemId() == R.id.nav_insight) {
+                    setCurrentFragment(insightFragment);
+                } else if (item.getItemId() == R.id.nav_goal) {
+                    setCurrentFragment(goalFragment);
+                } else if (item.getItemId() == R.id.nav_chat) {
+                    setCurrentFragment(chatFragment);
+                } else if (item.getItemId() == R.id.nav_profile) {
+                    setCurrentFragment(profileFragment);
+                }
+                return true;
             }
         });
+
+        setCurrentFragment(homeFragment);
     }
 
-    private void logout() {
-        mGoogleSignIn.revokeAccess();
-        mAuth.getInstance().signOut();
-        // Redirect to the login activity after logout
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+    private void setCurrentFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_fragment, fragment).commit();
     }
 }
