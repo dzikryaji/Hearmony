@@ -1,9 +1,9 @@
 package das.mobile.hearmony.activity;
 
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,12 +21,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private ActivityEditProfileBinding binding;
     private FirebaseAuth mAuth;
-
-    // Constant for image picker request
-    private static final int PICK_IMAGE_REQUEST = 1;
-
-    // Uri to store the selected image
-    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +77,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
             // Get values from EditText views
             String newName = binding.etName.getText().toString().trim();
-            String newEmail = binding.etEmail.getText().toString().trim();
             String newPhone = binding.etPhone.getText().toString().trim();
 
             // Update the values in the "users" node in the Realtime Database
@@ -93,18 +86,14 @@ public class EditProfileActivity extends AppCompatActivity {
                 usersRef.child("name").setValue(newName);
             }
 
-            if (!newEmail.isEmpty()) {
-                usersRef.child("email").setValue(newEmail);
-            }
-
             if (!newPhone.isEmpty()) {
                 usersRef.child("phoneNum").setValue(newPhone);
             }
 
-            // Optionally, you can set the updated values back to EditText views
             binding.etName.setText(newName);
-            binding.etEmail.setText(newEmail);
             binding.etPhone.setText(newPhone);
+            Toast.makeText(EditProfileActivity.this, "Data changes saved successfully.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 }
