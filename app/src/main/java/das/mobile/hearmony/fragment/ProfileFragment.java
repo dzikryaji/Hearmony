@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import das.mobile.hearmony.R;
+import das.mobile.hearmony.activity.EditProfileActivity;
 import das.mobile.hearmony.activity.LoginActivity;
 import das.mobile.hearmony.databinding.FragmentProfileBinding;
 
@@ -55,6 +56,11 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 logout();
             }
+        });
+
+        binding.tvEditProfile.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+            startActivity(intent);
         });
 
         return binding.getRoot();
