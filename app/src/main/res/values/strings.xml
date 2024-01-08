@@ -2,5 +2,6 @@
     <string name="app_name">Hearmony</string>
     <string name="default_web_client_id">YAIzaSyAXCQDNr2WEIbMlxk1ZaWAbnIEaIQpXUYo</string>
     <string name="edit_profile"><u>Edit my profile</u></string>
+    <string name="set_photo_profile"><u>Set photo profile</u></string>
 
 </resources>

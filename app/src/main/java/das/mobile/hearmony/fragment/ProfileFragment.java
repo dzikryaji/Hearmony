@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import das.mobile.hearmony.R;
+import das.mobile.hearmony.activity.EditProfileActivity;
 import das.mobile.hearmony.activity.LoginActivity;
 import das.mobile.hearmony.databinding.FragmentProfileBinding;
 
@@ -80,6 +81,11 @@ public class ProfileFragment extends Fragment {
 
         // Set click listener for the logout button
         binding.btnLogout.setOnClickListener(v -> logout());
+
+        binding.tvEditProfile.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+            startActivity(intent);
+        });
 
         return binding.getRoot();
     }
