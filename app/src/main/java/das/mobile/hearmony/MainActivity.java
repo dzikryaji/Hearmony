@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvHelloWorld;
     private Button btnLogout;
     private FirebaseAuth mAuth;
-    private GoogleSignInClient mGoogleSignIn;  // Declare the GoogleSignInClient instance
+    private GoogleSignInClient mGoogleSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        AuthUtil.revokeAccess(mGoogleSignIn); // Revoke Google access before signing out
+        mGoogleSignIn.revokeAccess();
         mAuth.getInstance().signOut();
         // Redirect to the login activity after logout
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
