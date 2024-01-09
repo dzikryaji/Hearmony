@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "594141418527",
+    "firebase_url": "https://hackfest-ef21a-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "hackfest-ef21a",
     "storage_bucket": "hackfest-ef21a.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "594141418527-td98h1a5qmbakj8mjuk64ovvr3cnoi9i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "das.mobile.hearmony",
+            "certificate_hash": "e412617465e559a5ba94b4e345a934778547cec8"
+          }
+        },
         {
           "client_id": "594141418527-8t611fqnipraj6mogno8qnses0ms1dlg.apps.googleusercontent.com",
           "client_type": 3

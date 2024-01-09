@@ -13,6 +13,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import das.mobile.hearmony.R;
 import das.mobile.hearmony.activity.EditProfileActivity;
@@ -35,7 +40,6 @@ public class ProfileFragment extends Fragment {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail().build();
         mGoogleSignIn = GoogleSignIn.getClient(getActivity(), gso);
-
     }
 
     @Override
@@ -43,20 +47,40 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
-        // Set a welcome message (you can customize this based on user data)
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            String displayName = currentUser.getDisplayName();
-            binding.tvName.setText(displayName);
+            String uid = currentUser.getUid();
+
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Replace "name" with the actual key under which the display name is stored
+                        String displayName = dataSnapshot.child("name").getValue(String.class);
+                        String phoneNum = dataSnapshot.child("phoneNum").getValue(String.class);
+
+                        // Set the display name to the TextView
+                        binding.tvName.setText(displayName);
+
+                        // Set the phone number text
+                        if (phoneNum.equals("")) {
+                            binding.phone.setText("Phone number not yet added.");
+                        } else {
+                            binding.phone.setText(phoneNum);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors if any
+                }
+            });
         }
 
         // Set click listener for the logout button
-        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
+        binding.btnLogout.setOnClickListener(v -> logout());
 
         binding.tvEditProfile.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), EditProfileActivity.class);
