@@ -92,7 +92,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         binding.btnLogin.setOnClickListener(v -> signInWithEmail()); // Button to invoke the login method with email
-        binding.cvGoogle.setOnClickListener(v -> signInWithGoogle()); // Button to invoke the login method with google
+//TODO : Apus ini?
+//        binding.cvGoogle.setOnClickListener(v -> signInWithGoogle()); // Button to invoke the login method with google
         // Add Forgot Password functionality with time limit
         binding.forgot.setOnClickListener(v -> {
             if (forgotButtonEnabled) {
