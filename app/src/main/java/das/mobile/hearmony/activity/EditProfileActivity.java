@@ -1,5 +1,6 @@
 package das.mobile.hearmony.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -28,7 +29,6 @@ public class EditProfileActivity extends AppCompatActivity {
         binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mAuth = FirebaseAuth.getInstance();
 
         // Make status bar transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -95,5 +95,13 @@ public class EditProfileActivity extends AppCompatActivity {
             Toast.makeText(EditProfileActivity.this, "Data changes saved successfully.",
                     Toast.LENGTH_SHORT).show();
         }
+        binding.ivBack.setOnClickListener(view -> {
+            finish();
+        });
+
+        binding.cvEditAvatar.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EditAvatarActivity.class);
+            startActivity(intent);
+        });
     }
 }
