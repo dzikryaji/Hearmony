@@ -68,6 +68,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/existingavatar"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginStart="30dp"
@@ -355,6 +356,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/savebutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"

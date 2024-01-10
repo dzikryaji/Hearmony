@@ -64,6 +64,7 @@
             app:layout_constraintEnd_toEndOf="@id/iv_pfp">
 
             <ImageView
+                android:id="@+id/editavatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

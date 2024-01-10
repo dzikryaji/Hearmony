@@ -1,10 +1,7 @@
 package das.mobile.hearmony.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.squareup.picasso.Picasso;
 
+import das.mobile.hearmony.R;
 import das.mobile.hearmony.databinding.ActivityEditProfileBinding;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -38,6 +35,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
         binding.ivBack.setOnClickListener(view -> finish());
+        binding.editavatar.setOnClickListener(view -> {
+            Intent intent = new Intent(EditProfileActivity.this, EditAvatarActivity.class);
+            startActivity(intent);
+        });
 
         // Assuming you have EditText views with IDs et_name, et_email, et_phone
         binding.save.setOnClickListener(view -> saveChanges());
@@ -55,7 +56,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         String currentName = dataSnapshot.child("name").getValue(String.class);
                         String currentEmail = dataSnapshot.child("email").getValue(String.class);
                         String currentPhone = dataSnapshot.child("phoneNum").getValue(String.class);
-                        String avatarValue = dataSnapshot.child("profileUrl").getValue(String.class);
+                        int avatarValue = dataSnapshot.child("avatar").getValue(Integer.class);
 
                         // Set hints based on existing user data
                         binding.etName.setHint(currentName);
@@ -73,28 +74,17 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
-    private void setProfileImage(String avatarValue) {
-        if (avatarValue != null) {
-            String imagePath;
-
-            switch (avatarValue) {
-                case "1":
-                    imagePath = "/avatar/boy.png";
-                    break;
-                case "2":
-                    imagePath = "/avatar/girl.png";
-                    break;
-                default:
-                    imagePath = "/avatar/boy.png";
-                    break;
-            }
-
-            storage.getReference().child(imagePath)
-                    .getDownloadUrl().addOnSuccessListener(uri -> {
-                        Picasso.get().load(uri).into(binding.ivPfp);
-                    }).addOnFailureListener(exception -> {
-                        Log.e("FirebaseStorage", "Error loading profile image: " + exception.getMessage(), exception);
-                    });
+    private void setProfileImage(int avatarValue) {
+        switch (avatarValue) {
+            case 1:
+                binding.ivPfp.setImageResource(R.drawable.img_avatar1);
+                break;
+            case 2:
+                binding.ivPfp.setImageResource(R.drawable.img_avatar2);
+                break;
+            default:
+                binding.ivPfp.setImageResource(R.drawable.img_avatar3);
+                break;
         }
     }
     private void saveChanges() {
@@ -123,13 +113,5 @@ public class EditProfileActivity extends AppCompatActivity {
             Toast.makeText(EditProfileActivity.this, "Data changes saved successfully.",
                     Toast.LENGTH_SHORT).show();
         }
-        binding.ivBack.setOnClickListener(view -> {
-            finish();
-        });
-
-        binding.cvEditAvatar.setOnClickListener(view -> {
-            Intent intent = new Intent(this, EditAvatarActivity.class);
-            startActivity(intent);
-        });
     }
 }
