@@ -5,15 +5,18 @@ public class User {
     private String name;
     private String email;
     private String profileUrl;
+    private String phoneNum;
+
 
     public User() {
     }
 
-    public User(String id, String name, String email, String profileUrl) {
+    public User(String id, String name, String email, String profileUrl, String phoneNum) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.profileUrl = profileUrl;
+        this.phoneNum = phoneNum;
     }
 
     // Add getters and setters as needed
@@ -48,6 +51,14 @@ public class User {
 
     public void setProfileUrl(String profileUrl) {
         this.profileUrl = profileUrl;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 }
 

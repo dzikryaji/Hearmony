@@ -2,6 +2,7 @@ package das.mobile.hearmony.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 import das.mobile.hearmony.R;
 import das.mobile.hearmony.activity.EditProfileActivity;
@@ -24,52 +32,102 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignIn;
     private FragmentProfileBinding binding;
+    private FirebaseStorage storage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
 
-        // Initialize mGoogleSignIn (you need to do this based on your existing setup)
+        // Initialize mGoogleSignIn
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail().build();
         mGoogleSignIn = GoogleSignIn.getClient(getActivity(), gso);
 
+        // Initialize Firebase Storage
+        storage = FirebaseStorage.getInstance("gs://hackfest-ef21a.appspot.com");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
+        setupView();
 
-        // Set a welcome message (you can customize this based on user data)
+        return binding.getRoot();
+    }
+
+    private void setupView() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if (currentUser != null) {
-            String displayName = currentUser.getDisplayName();
-            binding.tvName.setText(displayName);
+            String uid = currentUser.getUid();
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String displayName = dataSnapshot.child("name").getValue(String.class);
+                        String phoneNum = dataSnapshot.child("phoneNum").getValue(String.class);
+                        String avatarValue = dataSnapshot.child("profileUrl").getValue(String.class);
+
+                        binding.tvName.setText(displayName);
+
+                        if (phoneNum.equals("")) {
+                            binding.phone.setText("Phone number not yet added.");
+                        } else {
+                            binding.phone.setText(phoneNum);
+                        }
+
+                        setProfileImage(avatarValue);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors if any
+                }
+            });
         }
 
-        // Set click listener for the logout button
-        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
+        binding.btnLogout.setOnClickListener(v -> logout());
 
         binding.tvEditProfile.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), EditProfileActivity.class);
             startActivity(intent);
         });
+    }
 
-        return binding.getRoot();
+    private void setProfileImage(String avatarValue) {
+        if (avatarValue != null) {
+            String imagePath;
+
+            switch (avatarValue) {
+                case "1":
+                    imagePath = "/avatar/boy.png";
+                    break;
+                case "2":
+                    imagePath = "/avatar/girl.png";
+                    break;
+                default:
+                    imagePath = "/avatar/boy.png";
+                    break;
+            }
+
+            storage.getReference().child(imagePath)
+                    .getDownloadUrl().addOnSuccessListener(uri -> {
+                        Picasso.get().load(uri).into(binding.profilepict);
+                    }).addOnFailureListener(exception -> {
+                        Log.e("FirebaseStorage", "Error loading profile image: " + exception.getMessage(), exception);
+                    });
+        }
     }
 
     private void logout() {
         mGoogleSignIn.revokeAccess();
-        mAuth.getInstance().signOut();
-        // Redirect to the login activity after logout
+        mAuth.signOut();
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
         getActivity().finish();

@@ -143,11 +143,12 @@
                 android:fontFamily="@font/manrope"
                 android:gravity="center_vertical"
                 android:hint="johndoe@email.com"
-                android:inputType="textEmailAddress"
+                android:inputType="none"
                 android:paddingVertical="12dp"
                 android:paddingStart="15dp"
+                android:editable="false"
                 android:textColorHint="@color/slate_300"
-                android:textSize="14sp" />
+                android:textSize="14sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,6 +186,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
