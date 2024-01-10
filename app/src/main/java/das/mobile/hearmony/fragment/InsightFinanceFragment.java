@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import java.util.ArrayList;
+
 import das.mobile.hearmony.adapter.InsightAdapter;
 import das.mobile.hearmony.databinding.FragmentInsightFinanceBinding;
+import das.mobile.hearmony.model.Article;
 
 public class InsightFinanceFragment extends Fragment {
 
@@ -33,7 +36,9 @@ public class InsightFinanceFragment extends Fragment {
 
         // Set Adapter for Recycler View
         binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.rvInsight.setAdapter(new InsightAdapter());
+        InsightAdapter adapter = new InsightAdapter(new ArrayList<Article>());
+        binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.rvInsight.setAdapter(adapter);
 
         return binding.getRoot();
     }

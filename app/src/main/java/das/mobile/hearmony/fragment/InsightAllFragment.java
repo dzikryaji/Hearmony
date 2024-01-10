@@ -16,7 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import das.mobile.hearmony.adapter.InsightPagerAdapter;
+import das.mobile.hearmony.adapter.InsightAdapter;
 import das.mobile.hearmony.databinding.FragmentInsightAllBinding;
 import das.mobile.hearmony.model.Article;
 
@@ -24,12 +24,17 @@ public class InsightAllFragment extends Fragment {
 
     FragmentInsightAllBinding binding;
     private ArrayList<Article> allArticlesList = new ArrayList<>();
-    private InsightPagerAdapter adapter;
+    private InsightAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentInsightAllBinding.inflate(inflater, container, false);
+
+        //Set Adapter and layout manager into recyclerview
+        adapter = new InsightAdapter(new ArrayList<Article>());
+        binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.rvInsight.setAdapter(adapter);
 
         // Assuming you have initialized the database reference
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("article");
@@ -46,12 +51,9 @@ public class InsightAllFragment extends Fragment {
                     }
                 }
 
-                // TODO:Initialize the adapter with your data
-                // adapter = new InsightAdapter(allArticlesList);
+                adapter.setArticleList(allArticlesList);
+                adapter.notifyDataSetChanged();
 
-
-                // Handle binding data (title, thumbnail, content, category, and timestamp) from ArrayList into RecyclerView
-                // TODO: Additional setup, do it here.
             }
 
             @Override
@@ -60,9 +62,6 @@ public class InsightAllFragment extends Fragment {
             }
         });
 
-        // Set Adapter for Recycler View
-        binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.rvInsight.setAdapter(new InsightAdapter());
         return binding.getRoot();
     }
 }

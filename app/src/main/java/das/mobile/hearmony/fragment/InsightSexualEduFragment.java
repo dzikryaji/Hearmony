@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import java.util.ArrayList;
+
 import das.mobile.hearmony.adapter.InsightAdapter;
 import das.mobile.hearmony.databinding.FragmentInsightSexualEduBinding;
+import das.mobile.hearmony.model.Article;
 
 public class InsightSexualEduFragment extends Fragment {
 
@@ -33,8 +36,9 @@ public class InsightSexualEduFragment extends Fragment {
         binding.progressBar.setProgress(sexualEduScore);
 
         // Set Adapter for Recycler View
+        InsightAdapter adapter = new InsightAdapter(new ArrayList<Article>());
         binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.rvInsight.setAdapter(new InsightAdapter());
+        binding.rvInsight.setAdapter(adapter);
 
         return binding.getRoot();
     }
