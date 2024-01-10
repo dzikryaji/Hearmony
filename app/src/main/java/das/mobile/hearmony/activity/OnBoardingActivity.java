@@ -180,10 +180,9 @@ public class OnBoardingActivity extends AppCompatActivity {
             String userId = user.getUid();
             String userName = user.getDisplayName();
             String userEmail = user.getEmail();
-            String userProfileUrl = user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "";
 
             // Create a user object
-            User userInfo = new User(userId, userName, userEmail, userProfileUrl, "");
+            User userInfo = new User(userId, userName, userEmail, 1, null);
 
             // Save user information to the Realtime Database
             db.getReference().child("users").child(user.getUid()).setValue(userInfo);

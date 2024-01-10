@@ -4,18 +4,18 @@ public class User {
     private String id;
     private String name;
     private String email;
-    private String profileUrl;
+    private int avatar;
     private String phoneNum;
 
 
     public User() {
     }
 
-    public User(String id, String name, String email, String profileUrl, String phoneNum) {
+    public User(String id, String name, String email, int avatar, String phoneNum) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.profileUrl = profileUrl;
+        this.avatar = avatar;
         this.phoneNum = phoneNum;
     }
 
@@ -45,12 +45,12 @@ public class User {
         this.email = email;
     }
 
-    public String getProfileUrl() {
-        return profileUrl;
+    public int getAvatar() {
+        return avatar;
     }
 
-    public void setProfileUrl(String profileUrl) {
-        this.profileUrl = profileUrl;
+    public void setAvatar(String profileUrl) {
+        this.avatar = avatar;
     }
 
     public String getPhoneNum() {

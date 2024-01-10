@@ -2,7 +2,6 @@ package das.mobile.hearmony.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.squareup.picasso.Picasso;
 
 import das.mobile.hearmony.R;
 import das.mobile.hearmony.activity.EditProfileActivity;
@@ -71,11 +69,11 @@ public class ProfileFragment extends Fragment {
                     if (dataSnapshot.exists()) {
                         String displayName = dataSnapshot.child("name").getValue(String.class);
                         String phoneNum = dataSnapshot.child("phoneNum").getValue(String.class);
-                        String avatarValue = dataSnapshot.child("profileUrl").getValue(String.class);
+                        int avatarValue = dataSnapshot.child("avatar").getValue(Integer.class);
 
                         binding.tvName.setText(displayName);
 
-                        if (phoneNum.equals("")) {
+                        if (phoneNum.isEmpty()) {
                             binding.phone.setText("Phone number not yet added.");
                         } else {
                             binding.phone.setText(phoneNum);
@@ -100,28 +98,17 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void setProfileImage(String avatarValue) {
-        if (avatarValue != null) {
-            String imagePath;
-
-            switch (avatarValue) {
-                case "1":
-                    imagePath = "/avatar/boy.png";
-                    break;
-                case "2":
-                    imagePath = "/avatar/girl.png";
-                    break;
-                default:
-                    imagePath = "/avatar/boy.png";
-                    break;
-            }
-
-            storage.getReference().child(imagePath)
-                    .getDownloadUrl().addOnSuccessListener(uri -> {
-                        Picasso.get().load(uri).into(binding.profilepict);
-                    }).addOnFailureListener(exception -> {
-                        Log.e("FirebaseStorage", "Error loading profile image: " + exception.getMessage(), exception);
-                    });
+    private void setProfileImage(int avatarValue) {
+        switch (avatarValue) {
+            case 1:
+                binding.profilepict.setImageResource(R.drawable.img_avatar1);
+                break;
+            case 2:
+                binding.profilepict.setImageResource(R.drawable.img_avatar2);
+                break;
+            default:
+                binding.profilepict.setImageResource(R.drawable.img_avatar3);
+                break;
         }
     }
 
