@@ -17,12 +17,10 @@ import das.mobile.hearmony.databinding.FragmentInsightBinding;
 public class InsightFragment extends Fragment {
 
     FragmentInsightBinding binding;
-    int progress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        progress = 55;
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
@@ -58,10 +56,6 @@ public class InsightFragment extends Fragment {
                     break;
             }
         }).attach();
-
-        //set progressbar
-        binding.tvProgress.setText(String.valueOf(progress));
-        binding.progressBar.setProgress(progress);
 
         return binding.getRoot();
     }
