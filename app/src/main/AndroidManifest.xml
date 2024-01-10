@@ -17,8 +17,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.EditProfileActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Hearmony.LightStatusBar" />
+            android:exported="false"/>
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="false"

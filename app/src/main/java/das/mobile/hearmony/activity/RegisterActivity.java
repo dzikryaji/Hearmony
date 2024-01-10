@@ -2,11 +2,9 @@ package das.mobile.hearmony.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,10 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Make status bar transparent
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();

@@ -1,10 +1,8 @@
 package das.mobile.hearmony.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -13,8 +11,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
-import das.mobile.hearmony.adapter.OnBoardingPagerAdapter;
 import das.mobile.hearmony.R;
+import das.mobile.hearmony.adapter.OnBoardingPagerAdapter;
 import das.mobile.hearmony.databinding.ActivityOnBoardingBinding;
 
 public class OnBoardingActivity extends AppCompatActivity {
@@ -26,11 +24,6 @@ public class OnBoardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityOnBoardingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // make status bar transparent
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
 
         binding.btnLogin.setOnClickListener(view -> {
             Intent intent = new Intent(this, LoginActivity.class);
