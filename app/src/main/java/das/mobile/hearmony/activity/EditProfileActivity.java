@@ -3,6 +3,7 @@ package das.mobile.hearmony.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -15,6 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 import das.mobile.hearmony.databinding.ActivityEditProfileBinding;
 
@@ -22,6 +25,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private ActivityEditProfileBinding binding;
     private FirebaseAuth mAuth;
+    private FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,8 @@ public class EditProfileActivity extends AppCompatActivity {
         binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        mAuth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance("gs://hackfest-ef21a.appspot.com");
 
         // Make status bar transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -53,11 +59,13 @@ public class EditProfileActivity extends AppCompatActivity {
                         String currentName = dataSnapshot.child("name").getValue(String.class);
                         String currentEmail = dataSnapshot.child("email").getValue(String.class);
                         String currentPhone = dataSnapshot.child("phoneNum").getValue(String.class);
+                        String avatarValue = dataSnapshot.child("profileUrl").getValue(String.class);
 
                         // Set hints based on existing user data
                         binding.etName.setHint(currentName);
                         binding.etEmail.setHint(currentEmail);
                         binding.etPhone.setHint(currentPhone);
+                        setProfileImage(avatarValue);
                     }
                 }
 
@@ -69,6 +77,30 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
+    private void setProfileImage(String avatarValue) {
+        if (avatarValue != null) {
+            String imagePath;
+
+            switch (avatarValue) {
+                case "1":
+                    imagePath = "/avatar/boy.png";
+                    break;
+                case "2":
+                    imagePath = "/avatar/girl.png";
+                    break;
+                default:
+                    imagePath = "/avatar/boy.png";
+                    break;
+            }
+
+            storage.getReference().child(imagePath)
+                    .getDownloadUrl().addOnSuccessListener(uri -> {
+                        Picasso.get().load(uri).into(binding.ivPfp);
+                    }).addOnFailureListener(exception -> {
+                        Log.e("FirebaseStorage", "Error loading profile image: " + exception.getMessage(), exception);
+                    });
+        }
+    }
     private void saveChanges() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
