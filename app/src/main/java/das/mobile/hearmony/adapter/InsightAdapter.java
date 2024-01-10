@@ -1,3 +1,4 @@
+// InsightAdapter.java
 package das.mobile.hearmony.adapter;
 
 import android.content.Context;
@@ -8,70 +9,79 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.squareup.picasso.Picasso;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import das.mobile.hearmony.activity.DetailArticleActivity;
 import das.mobile.hearmony.databinding.ItemInsightBinding;
 import das.mobile.hearmony.model.Article;
 
-public class InsightAdapter extends RecyclerView.Adapter<InsightAdapter.InsightViewHolder> {
-    Context context;
-    List<Article> articleList;
+public class InsightAdapter extends FirebaseRecyclerAdapter<Article, InsightAdapter.InsightViewHolder> {
 
-    public InsightAdapter(List<Article> articleList) {
-        this.articleList = articleList;
+    private final Context context;
+
+    public InsightAdapter(@NonNull FirebaseRecyclerOptions<Article> options, Context context) {
+        super(options);
+        this.context = context;
     }
 
-    public void setArticleList(List<Article> articleList) {
-        this.articleList = articleList;
+    @Override
+    protected void onBindViewHolder(@NonNull InsightViewHolder holder, int position, @NonNull Article article) {
+        holder.bind(article);
     }
 
     @NonNull
     @Override
     public InsightViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        return new InsightViewHolder(ItemInsightBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        ItemInsightBinding binding = ItemInsightBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new InsightViewHolder(binding);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull InsightViewHolder holder, int position) {
-        Article article = articleList.get(position);
-//
-//        Picasso.get().load(article.getThumbnailPath()).into(holder.binding.ivArticle);
-//        holder.binding.tvTitle.setText(article.getTitle());
-//
-//        // Parse the input date string
-//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
-//        Date date = null;
-//        try {
-//            date = inputFormat.parse(article.getTimestamp());
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Format the date according to the desired output format
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("EEEE, MMMM/dd/yyyy");
-//        String formattedTimeStamp = outputFormat.format(date);
-//
-//        holder.binding.tvDate.setText(article.getTimestamp());
-
-        holder.binding.getRoot().setOnClickListener(view ->{
-            Intent intent = new Intent(context, DetailArticleActivity.class);
-            context.startActivity(intent);
-        });
+    // Add this method to update options
+    public void updateOptions(FirebaseRecyclerOptions<Article> options) {
+        this.updateOptions(options);
     }
 
-    @Override
-    public int getItemCount() {
-        return articleList.size();
-    }
+    public class InsightViewHolder extends RecyclerView.ViewHolder {
 
-    public static class InsightViewHolder extends RecyclerView.ViewHolder {
+        private final ItemInsightBinding binding;
 
-        ItemInsightBinding binding;
         public InsightViewHolder(@NonNull ItemInsightBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+        }
+
+        public void bind(Article article) {
+            // Clear existing image to handle view recycling
+            binding.ivArticle.setImageDrawable(null);
+
+            Picasso.get().load(article.getThumbnailPath()).into(binding.ivArticle);
+            binding.tvTitle.setText(article.getTitle());
+
+            // Parse the input date string
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = null;
+            try {
+                date = inputFormat.parse(article.getTimestamp());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            // Format the date according to the desired output format
+            SimpleDateFormat outputFormat = new SimpleDateFormat("EEEE, MMMM/dd/yyyy");
+            String formattedTimeStamp = outputFormat.format(date);
+
+            binding.tvDate.setText(formattedTimeStamp);
+
+            binding.getRoot().setOnClickListener(view -> {
+                Intent intent = new Intent(context, DetailArticleActivity.class);
+                context.startActivity(intent);
+            });
         }
     }
 }

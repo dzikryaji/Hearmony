@@ -6,13 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.ArrayList;
-
-import das.mobile.hearmony.adapter.InsightAdapter;
 import das.mobile.hearmony.databinding.FragmentInsightFinanceBinding;
-import das.mobile.hearmony.model.Article;
 
 public class InsightFinanceFragment extends Fragment {
 
@@ -34,11 +29,11 @@ public class InsightFinanceFragment extends Fragment {
         binding.tvProgress.setText(String.valueOf(financeScore));
         binding.progressBar.setProgress(financeScore);
 
-        // Set Adapter for Recycler View
-        binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
-        InsightAdapter adapter = new InsightAdapter(new ArrayList<Article>());
-        binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.rvInsight.setAdapter(adapter);
+//        // Set Adapter for Recycler View
+//        binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        InsightAdapter adapter = new InsightAdapter(new ArrayList<Article>());
+//        binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        binding.rvInsight.setAdapter(adapter);
 
         return binding.getRoot();
     }
