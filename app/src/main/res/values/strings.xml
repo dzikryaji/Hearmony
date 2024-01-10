@@ -6,5 +6,18 @@
     <string name="txt_communication1">Your communication skills with your partner are not good enough, let\'s improve them again !!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dummy_title_article">5 LDR Tips for Beginners, Don\'t Forget the Little Things in Your Relationship</string>
+    <string name="dummy_date_article">Sunday, January/23/2024</string>
+    <string name="dummy_author_article">Dr. Terbaik Man S.Ked.</string>
+    <string name="article_separator">|</string>
+    <string name="dummy_article_post">
+        <b>Descripction</b>\n \n
+
+        Jakarta— Long Distance Relationships aka LDR is often a scary thing for couples because they are separated by distance.\n\n
+
+        Even so, there is no need to be afraid to do it. Check out the following LDR tips for beginners so that your relationship with them runs smoothly and lasts.\n\n
+
+        Because, quite a few couples have successfully gone through the challenges of LDR. Even though it's difficult, it's easy, but you have to believe you can get through it with your partner.
+    </string>
 
 </resources>

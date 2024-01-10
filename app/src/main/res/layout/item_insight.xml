@@ -23,9 +23,9 @@
         android:ellipsize="end"
         android:fontFamily="@font/manrope_extrabold"
         android:maxLines="3"
-        android:text="5 LDR Tips for Beginners, Don't Forget the Little Things in Your Relationship"
+        android:text="@string/dummy_title_article"
         android:textColor="@color/black"
-        android:textSize="13dp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_article"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,9 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/manrope"
-        android:text="Sunday, January/23/2024"
+        android:text="@string/dummy_date_article"
         android:textColor="#5E718D"
-        android:textSize="13dp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_article"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_article" />
