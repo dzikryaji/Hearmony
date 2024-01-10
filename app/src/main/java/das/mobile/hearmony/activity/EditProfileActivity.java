@@ -1,5 +1,6 @@
 package das.mobile.hearmony.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -26,6 +27,11 @@ public class EditProfileActivity extends AppCompatActivity {
 
         binding.ivBack.setOnClickListener(view -> {
             finish();
+        });
+
+        binding.cvEditAvatar.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EditAvatarActivity.class);
+            startActivity(intent);
         });
     }
 }
