@@ -55,6 +55,7 @@ public class DetailArticleActivity extends AppCompatActivity {
             binding.tvAuthor.setText(article.getAuthor());
             binding.ivBookmark.setOnClickListener(view -> {
                 if (currentUser != null) {
+//                    Log.i("Article id", )
                     databaseReference.child("users").child(currentUser.getUid()).child("savedArticles").push().setValue(article.getTitle());
                     Toast.makeText(DetailArticleActivity.this, "Article saved", Toast.LENGTH_SHORT).show();
                 } else {
