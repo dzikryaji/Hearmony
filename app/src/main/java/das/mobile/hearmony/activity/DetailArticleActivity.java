@@ -1,7 +1,9 @@
 package das.mobile.hearmony.activity;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,11 +27,13 @@ public class DetailArticleActivity extends AppCompatActivity {
         // Get the Article object from the intent
         Article article = getIntent().getParcelableExtra("article");
 
+        Log.i("MAIN", article.getContent());
+
         // Set the data to the views
         if (article != null) {
             binding.tvTitle.setText(article.getTitle());
             binding.tvCategory.setText(article.getCategory());
-            binding.tvMain.setText(article.getContent());
+            binding.tvMain.setText(Html.fromHtml(article.getContent()), TextView.BufferType.SPANNABLE);
             binding.tvBadgeCategory.setText(article.getCategory());
             binding.tvTimestamp.setText(article.getTimestamp());
             binding.tvAuthor.setText(article.getAuthor());
@@ -43,5 +47,7 @@ public class DetailArticleActivity extends AppCompatActivity {
             });
 
         }
+
+        binding.ivBack.setOnClickListener(view -> {finish();});
     }
 }
