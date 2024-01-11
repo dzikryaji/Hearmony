@@ -74,12 +74,12 @@ public class ProfileFragment extends Fragment {
 
                         binding.tvName.setText(displayName);
 
-//                        if (phoneNum.isEmpty()) {
-//                            binding.phone.setText("Phone number not yet added.");
-//                        } else {
-//                            binding.phone.setText(phoneNum);
-//                        }
-//
+                        if (phoneNum.equals("")) {
+                            binding.phone.setText("Phone number not yet added.");
+                        } else {
+                            binding.phone.setText(phoneNum);
+                        }
+
                         setProfileImage(avatarValue);
                     }
                 }
