@@ -6,4 +6,6 @@
     <color name="dark_green">#4FBA8B</color>
     <color name="gray">#D7DFE9</color>
     <color name="slate_300">#AFBACA</color>
+    <color name="danger_red">#FF574D</color>
+    <color name="yellow">#EEDC38</color>
 </resources>

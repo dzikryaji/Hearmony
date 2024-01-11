@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import das.mobile.hearmony.R;
 import das.mobile.hearmony.adapter.InsightAdapter;
 import das.mobile.hearmony.databinding.FragmentInsightFinanceBinding;
 import das.mobile.hearmony.model.Article;
@@ -34,6 +36,7 @@ public class InsightFinanceFragment extends Fragment {
         binding = FragmentInsightFinanceBinding.inflate(inflater, container, false);
         articleList = new ArrayList<>();
         setUpFirebaseRecyclerView();
+        setUpProgressScore(90);
         return binding.getRoot();
     }
 
@@ -73,6 +76,24 @@ public class InsightFinanceFragment extends Fragment {
         binding.rvInsight.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.rvInsight.setAdapter(adapter);
     }
+    private void setUpProgressScore(int score){
+        if (score < 50){
+            binding.tvProgress.setBackgroundResource(R.drawable.bg_score_red);
+            binding.progressBar.setProgressDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.bg_progressbar_red));
+//            binding.tvScoreDescription.setText("");
+        } else if (score <= 75) {
+            binding.tvProgress.setBackgroundResource(R.drawable.bg_score_yellow);
+            binding.progressBar.setProgressDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.bg_progressbar_yellow));
+//            binding.tvScoreDescription.setText("");
+        } else {
+            binding.tvProgress.setBackgroundResource(R.drawable.bg_score_green);
+            binding.progressBar.setProgressDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.bg_progressbar_green));
+//            binding.tvScoreDescription.setText("");
+        }
+        binding.progressBar.setProgress(score);
+        binding.tvProgress.setText(String.valueOf(score));
+    }
+
 
     @Override
     public void onStart() {

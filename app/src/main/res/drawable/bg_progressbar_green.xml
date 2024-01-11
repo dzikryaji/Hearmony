@@ -11,7 +11,7 @@
     <item android:id="@android:id/progress">
         <scale android:scaleWidth="100%">
             <shape android:shape="rectangle">
-                <solid android:color="#EEDC38" />
+                <solid android:color="@color/primary_green" />
                 <corners android:radius="6dp"/>
             </shape>
         </scale>
