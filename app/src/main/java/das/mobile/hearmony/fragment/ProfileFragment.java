@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
 import das.mobile.hearmony.R;
+import das.mobile.hearmony.activity.BookmarkActivity;
 import das.mobile.hearmony.activity.EditProfileActivity;
 import das.mobile.hearmony.activity.LoginActivity;
 import das.mobile.hearmony.databinding.FragmentProfileBinding;
@@ -73,12 +74,12 @@ public class ProfileFragment extends Fragment {
 
                         binding.tvName.setText(displayName);
 
-                        if (phoneNum.isEmpty()) {
-                            binding.phone.setText("Phone number not yet added.");
-                        } else {
-                            binding.phone.setText(phoneNum);
-                        }
-
+//                        if (phoneNum.isEmpty()) {
+//                            binding.phone.setText("Phone number not yet added.");
+//                        } else {
+//                            binding.phone.setText(phoneNum);
+//                        }
+//
                         setProfileImage(avatarValue);
                     }
                 }
@@ -94,6 +95,11 @@ public class ProfileFragment extends Fragment {
 
         binding.tvEditProfile.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+            startActivity(intent);
+        });
+
+        binding.llBookmarks.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), BookmarkActivity.class);
             startActivity(intent);
         });
     }

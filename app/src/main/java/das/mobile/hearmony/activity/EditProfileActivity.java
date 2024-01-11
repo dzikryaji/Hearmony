@@ -35,7 +35,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
         binding.ivBack.setOnClickListener(view -> finish());
-        binding.editavatar.setOnClickListener(view -> {
+        binding.cvEditAvatar.setOnClickListener(view -> {
             Intent intent = new Intent(EditProfileActivity.this, EditAvatarActivity.class);
             startActivity(intent);
         });

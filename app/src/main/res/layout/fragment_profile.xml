@@ -26,7 +26,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_weight="1"
@@ -56,7 +56,7 @@
                     android:id="@+id/profilepict"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/img_default_pfp"/>
+                    android:src="@drawable/img_default_pfp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -69,9 +69,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/manrope_extrabold"
-                        android:text="Reynaldi Holtrop"
                         android:textColor="@color/white"
-                        android:textSize="16dp" />
+                        android:textSize="16sp"
+                        tools:text="Reynaldi Holtrop" />
 
 
                     <TextView
@@ -80,9 +80,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="7dp"
                         android:fontFamily="@font/manrope"
-                        android:text="+62 823 456 7890"
+                        tools:text="+62 823 456 7890"
                         android:textColor="@color/white"
-                        android:textSize="12dp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
                         android:paddingVertical="1dp"
                         android:text="Basic"
                         android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -102,7 +102,7 @@
 
 
         </LinearLayout>
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,51 +113,47 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:background="@drawable/bg_button_membership">
+                android:background="@drawable/bg_button_membership"
+                android:gravity="center">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="0dp"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/manrope_bold"
+                    android:gravity="center|end"
                     android:paddingVertical="15dp"
-                    android:textSize="12sp"
                     android:text="Upgrade Membership"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/manrope_bold"
-                    android:gravity="center|end"/>
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
-                    android:src="@drawable/ic_chevron_right"/>
+                    android:src="@drawable/ic_chevron_right" />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Account Settings"
-                android:textSize="14sp"
-                android:fontFamily="@font/manrope_extrabold"
-                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/manrope_extrabold"
+                android:text="Account Settings"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_profile_option_list"
                 android:gravity="center"
-                android:paddingVertical="9dp"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/bg_profile_option_list">
+                android:paddingVertical="9dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -167,15 +163,15 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_history"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="18dp"/>
+                        android:layout_marginEnd="18dp"
+                        android:src="@drawable/ic_history" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:fontFamily="@font/manrope_medium"
                         android:text="Consultation History"
                         android:textColor="@color/black"
@@ -192,10 +188,11 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#8897AE"
-                    android:layout_marginVertical="7dp"/>
+                    android:layout_marginVertical="7dp"
+                    android:background="#8897AE" />
 
                 <LinearLayout
+                    android:id="@+id/ll_bookmarks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
@@ -203,15 +200,15 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_bookmark"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="18dp"/>
+                        android:layout_marginEnd="18dp"
+                        android:src="@drawable/ic_bookmark" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:fontFamily="@font/manrope_medium"
                         android:text="Bookmarks"
                         android:textColor="@color/black"
@@ -230,21 +227,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Help Center"
-                android:textSize="14sp"
-                android:fontFamily="@font/manrope_extrabold"
-                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/manrope_extrabold"
+                android:text="Help Center"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_profile_option_list"
                 android:gravity="center"
-                android:paddingVertical="9dp"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/bg_profile_option_list">
+                android:paddingVertical="9dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -254,15 +251,15 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_customer"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="18dp"/>
+                        android:layout_marginEnd="18dp"
+                        android:src="@drawable/ic_customer" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:fontFamily="@font/manrope_medium"
                         android:text="Customer Help Center"
                         android:textColor="@color/black"
@@ -279,8 +276,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#8897AE"
-                    android:layout_marginVertical="7dp"/>
+                    android:layout_marginVertical="7dp"
+                    android:background="#8897AE" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -290,15 +287,15 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_faq"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="18dp"/>
+                        android:layout_marginEnd="18dp"
+                        android:src="@drawable/ic_faq" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:fontFamily="@font/manrope_medium"
                         android:text="Frequently Ask Question"
                         android:textColor="@color/black"
@@ -315,8 +312,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#8897AE"
-                    android:layout_marginVertical="7dp"/>
+                    android:layout_marginVertical="7dp"
+                    android:background="#8897AE" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -326,15 +323,15 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_language"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="18dp"/>
+                        android:layout_marginEnd="18dp"
+                        android:src="@drawable/ic_language" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:fontFamily="@font/manrope_medium"
                         android:text="Change Language"
                         android:textColor="@color/black"
@@ -353,21 +350,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="About"
-                android:textSize="14sp"
-                android:fontFamily="@font/manrope_extrabold"
-                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/manrope_extrabold"
+                android:text="About"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_profile_option_list"
                 android:gravity="center"
-                android:paddingVertical="9dp"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp"
-                android:background="@drawable/bg_profile_option_list">
+                android:paddingVertical="9dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -377,15 +374,15 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_info"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="18dp"/>
+                        android:layout_marginEnd="18dp"
+                        android:src="@drawable/ic_info" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:fontFamily="@font/manrope_medium"
                         android:text="About Us"
                         android:textColor="@color/black"
@@ -402,8 +399,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#8897AE"
-                    android:layout_marginVertical="7dp"/>
+                    android:layout_marginVertical="7dp"
+                    android:background="#8897AE" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -413,15 +410,15 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_privacy"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="18dp"/>
+                        android:layout_marginEnd="18dp"
+                        android:src="@drawable/ic_privacy" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:fontFamily="@font/manrope_medium"
                         android:text="Privacy Policy"
                         android:textColor="@color/black"
@@ -442,9 +439,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:paddingVertical="10dp"
                 android:background="@drawable/bg_button_logout"
-                android:text="Logout"/>
+                android:paddingVertical="10dp"
+                android:text="Logout" />
 
         </LinearLayout>
 
