@@ -6,12 +6,14 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import das.mobile.hearmony.adapter.CommentAdapter;
 import das.mobile.hearmony.databinding.ActivityDetailArticleBinding;
 import das.mobile.hearmony.model.Article;
 
@@ -49,5 +51,7 @@ public class DetailArticleActivity extends AppCompatActivity {
         }
 
         binding.ivBack.setOnClickListener(view -> {finish();});
+        binding.rvComment.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvComment.setAdapter(new CommentAdapter());
     }
 }
