@@ -90,8 +90,10 @@ public class InsightAdapter extends RecyclerView.Adapter<InsightAdapter.InsightV
 
             binding.getRoot().setOnClickListener(view -> {
                 Intent intent = new Intent(context, DetailArticleActivity.class);
+                intent.putExtra("article", article); // Pass the actual Article object
                 context.startActivity(intent);
             });
+
         }
     }
 }
