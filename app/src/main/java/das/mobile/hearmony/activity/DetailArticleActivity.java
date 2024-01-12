@@ -144,7 +144,7 @@ public class DetailArticleActivity extends AppCompatActivity {
                             DatabaseReference commentsRef = articleSnapshot.getRef().child("comments").push();
                             commentsRef.child("key").setValue(commentsRef.getKey());
                             commentsRef.child("comment").setValue(comment);
-                            commentsRef.child("name").setValue(currentUser.getUid());
+                            commentsRef.child("userID").setValue(currentUser.getUid());
                             commentsRef.child("timestamp").setValue(time);
                             Toast.makeText(DetailArticleActivity.this, "Comment added successfully", Toast.LENGTH_SHORT).show();
                         }
