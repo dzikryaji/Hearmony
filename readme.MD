@@ -48,5 +48,6 @@ Anyone can modify and use this app without it being commercialized. This app was
 Project is under development
 
 ## Screenshots
+![Screenshot](screenshot.gif)
 
 

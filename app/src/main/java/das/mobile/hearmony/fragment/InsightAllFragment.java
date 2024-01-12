@@ -1,10 +1,12 @@
 package das.mobile.hearmony.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -61,6 +63,22 @@ public class InsightAllFragment extends Fragment {
         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Article article = snapshot.getValue(Article.class);
             if (article != null) {
+                DatabaseReference articleId = FirebaseDatabase.getInstance().getReference().child("article");
+                articleId.addValueEventListener(new ValueEventListener(){
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot ds:snapshot.getChildren()){
+                            final String key= ds.getKey();
+                            articleId.child(key).child("id").setValue(key);
+                            articleList.add(article);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e("color","Error: " + error.getMessage());
+                    }
+                });
                 articleList.add(article);
             }
         }
