@@ -42,32 +42,43 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     @Override
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
         Comment comment = commentList.get(position);
-        userRef.child(comment.getUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    User user = snapshot.getValue(User.class);
-                    if (user != null) {
-                        holder.binding.tvComment.setText(comment.getComment());
-                        holder.binding.tvName.setText(user.getName());
-                        holder.binding.tvTimestamp.setText(formatTimeStamp(comment.getTimestamp()));
-                        setAvatar(holder, user.getAvatar());
-                    } else{
-                        holder.binding.getRoot().setVisibility(View.GONE);
+
+        // Add a null check for comment.getUserId()
+        if (comment.getUserId() != null) {
+            userRef.child(comment.getUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()){
+                        User user = snapshot.getValue(User.class);
+                        if (user != null) {
+                            holder.binding.tvComment.setText(comment.getComment());
+                            holder.binding.tvName.setText(user.getName());
+                            holder.binding.tvTimestamp.setText(formatTimeStamp(comment.getTimestamp()));
+                            setAvatar(holder, user.getAvatar());
+                        } else {
+                            holder.binding.getRoot().setVisibility(View.GONE);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        } else {
+            // Handle the case where comment.getUserId() is null
+            holder.binding.getRoot().setVisibility(View.GONE);
+        }
     }
+
 
 
     @Override
     public int getItemCount() {
+        if (commentList.isEmpty()){
+            return 0;
+        }
         return commentList.size();
     }
 

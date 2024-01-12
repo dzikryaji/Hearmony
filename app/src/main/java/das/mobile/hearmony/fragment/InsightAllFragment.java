@@ -63,6 +63,7 @@ public class InsightAllFragment extends Fragment {
         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Article article = snapshot.getValue(Article.class);
             if (article != null) {
+                articleList.add(article);
                 DatabaseReference articleId = FirebaseDatabase.getInstance().getReference().child("article");
                 articleId.addValueEventListener(new ValueEventListener(){
                     @Override
@@ -70,7 +71,6 @@ public class InsightAllFragment extends Fragment {
                         for(DataSnapshot ds:snapshot.getChildren()){
                             final String key= ds.getKey();
                             articleId.child(key).child("id").setValue(key);
-                            articleList.add(article);
                         }
                     }
 
@@ -79,7 +79,6 @@ public class InsightAllFragment extends Fragment {
                         Log.e("color","Error: " + error.getMessage());
                     }
                 });
-                articleList.add(article);
             }
         }
 

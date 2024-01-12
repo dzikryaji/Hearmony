@@ -123,7 +123,7 @@ public class DetailArticleActivity extends AppCompatActivity {
 
     private void setThumbnailImage(Article article) {
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-        final StorageReference imgRef = mStorageRef.child("/thumbnails/article-" + article.getId());
+        final StorageReference imgRef = mStorageRef.child("/thumbnails/article-" + article.getId() + ".jpg");
 
         imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
             Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(binding.ivThumbnail);
@@ -145,12 +145,16 @@ public class DetailArticleActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         for (DataSnapshot articleSnapshot : dataSnapshot.getChildren()) {
-                            DatabaseReference commentsRef = articleSnapshot.getRef().child("comments").push();
-                            commentsRef.child("key").setValue(commentsRef.getKey());
-                            commentsRef.child("comment").setValue(comment);
-                            commentsRef.child("userId").setValue(currentUser.getUid());
-                            commentsRef.child("timestamp").setValue(time);
-                            Toast.makeText(DetailArticleActivity.this, "Comment added successfully", Toast.LENGTH_SHORT).show();
+                            String title = articleSnapshot.child("title").getValue(String.class);
+                            if (articleTitle.equals(title)) {
+                                DatabaseReference commentsRef = articleSnapshot.getRef().child("comments").push();
+                                commentsRef.child("key").setValue(commentsRef.getKey());
+                                commentsRef.child("comment").setValue(comment);
+                                commentsRef.child("userId").setValue(currentUser.getUid());
+                                commentsRef.child("timestamp").setValue(time);
+                                binding.tvComment.setText("");
+                                break;
+                            }
                         }
                     } else {
                         Toast.makeText(DetailArticleActivity.this, "Article not found: " + articleTitle, Toast.LENGTH_SHORT).show();
@@ -168,6 +172,7 @@ public class DetailArticleActivity extends AppCompatActivity {
             Toast.makeText(DetailArticleActivity.this, "Comment cannot be empty", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void setUpComment() {
         DatabaseReference commentsRef = FirebaseDatabase.getInstance().getReference().child("article").child(article.getId()).child("comments");
@@ -189,7 +194,7 @@ public class DetailArticleActivity extends AppCompatActivity {
                         }
                     }
                     Collections.reverse(commentList);
-                    binding.tvCommentCount.setText(commentList.size() + " Comments");
+                        binding.tvCommentCount.setText(commentList.size() + " Comments");
                     setUpAdapter();
                 }
             }
