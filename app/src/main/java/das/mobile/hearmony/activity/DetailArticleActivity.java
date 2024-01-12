@@ -123,7 +123,7 @@ public class DetailArticleActivity extends AppCompatActivity {
 
     private void setThumbnailImage(Article article) {
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-        final StorageReference imgRef = mStorageRef.child("/thumbnails/article-" + article.getTitle() + ".jpg");
+        final StorageReference imgRef = mStorageRef.child("/thumbnails/article-" + article.getId());
 
         imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
             Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(binding.ivThumbnail);

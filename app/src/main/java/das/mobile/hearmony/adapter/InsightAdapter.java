@@ -65,7 +65,7 @@ public class InsightAdapter extends RecyclerView.Adapter<InsightAdapter.InsightV
             binding.ivArticle.setImageDrawable(null);
 
             StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-            final StorageReference imgRef = mStorageRef.child("/thumbnails/article-" + article.getTitle() + ".jpg");
+            final StorageReference imgRef = mStorageRef.child("/thumbnails/article-" + article.getId());
 
             imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
                 Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(binding.ivArticle);
