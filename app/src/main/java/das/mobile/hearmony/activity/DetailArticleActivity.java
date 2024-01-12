@@ -23,24 +23,30 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import das.mobile.hearmony.adapter.CommentAdapter;
 import das.mobile.hearmony.databinding.ActivityDetailArticleBinding;
 import das.mobile.hearmony.model.Article;
+import das.mobile.hearmony.model.Comment;
 
 public class DetailArticleActivity extends AppCompatActivity {
     private ActivityDetailArticleBinding binding;
     private FirebaseAuth mAuth;
+    private Article article;
     private CommentAdapter adapter;
+    private List<Comment> commentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDetailArticleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        adapter = new CommentAdapter();
+        commentList = new ArrayList<>();
 
         // Initialize Time Format
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -54,13 +60,14 @@ public class DetailArticleActivity extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
         // Get the Article object from the intent
-        Article article = getIntent().getParcelableExtra("article");
+        article = getIntent().getParcelableExtra("article");
 
         // Set the data to the views
         if (article != null) {
             setArticleData(article);
             setBookmarkClickListener(article);
             setThumbnailImage(article);
+            setUpComment();
 
             binding.sendComment.setOnClickListener(view -> addComment(article, time));
 
@@ -68,9 +75,6 @@ public class DetailArticleActivity extends AppCompatActivity {
                 finish();
                 setResult(RESULT_OK);
             });
-
-            binding.rvComment.setLayoutManager(new LinearLayoutManager(this));
-            binding.rvComment.setAdapter(adapter);
         }
     }
 
@@ -144,7 +148,7 @@ public class DetailArticleActivity extends AppCompatActivity {
                             DatabaseReference commentsRef = articleSnapshot.getRef().child("comments").push();
                             commentsRef.child("key").setValue(commentsRef.getKey());
                             commentsRef.child("comment").setValue(comment);
-                            commentsRef.child("userID").setValue(currentUser.getUid());
+                            commentsRef.child("userId").setValue(currentUser.getUid());
                             commentsRef.child("timestamp").setValue(time);
                             Toast.makeText(DetailArticleActivity.this, "Comment added successfully", Toast.LENGTH_SHORT).show();
                         }
@@ -164,4 +168,45 @@ public class DetailArticleActivity extends AppCompatActivity {
             Toast.makeText(DetailArticleActivity.this, "Comment cannot be empty", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void setUpComment() {
+        DatabaseReference commentsRef = FirebaseDatabase.getInstance().getReference().child("article").child(article.getId()).child("comments");
+        Log.i("Comment List : Set Up Comment", commentList.toString());
+        commentsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    commentList.clear();
+                    Log.i("Comment List : Set Up Comment onDataChange", commentList.toString());
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Log.i("Comment Snapshot", snapshot.toString());
+                        Comment comment = snapshot.getValue(Comment.class);
+                        Log.i("Comment List : Set Up Comment onDataChange Loop", commentList.toString());
+                        if (comment != null) {
+                            commentList.add(comment);
+                            Log.i("Comment List : Set Up Comment onDataChange Add to List", commentList.toString());
+                        }
+                    }
+                    Collections.reverse(commentList);
+                    binding.tvCommentCount.setText(commentList.size() + " Comments");
+                    setUpAdapter();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+    private void setUpAdapter() {
+        adapter = new CommentAdapter(commentList);
+        binding.rvComment.setAdapter(adapter);
+        binding.rvComment.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+
 }

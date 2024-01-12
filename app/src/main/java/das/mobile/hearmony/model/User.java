@@ -49,7 +49,7 @@ public class User {
         return avatar;
     }
 
-    public void setAvatar(String profileUrl) {
+    public void setAvatar(int avatar) {
         this.avatar = avatar;
     }
 
@@ -57,7 +57,7 @@ public class User {
         return phoneNum;
     }
 
-    public void setPhoneNum(String phoneNum) {
+    public void setPhoneNum(String phoaneNum) {
         this.phoneNum = phoneNum;
     }
 }

@@ -5,16 +5,16 @@ import android.os.Parcelable;
 
 public class Comment implements Parcelable {
     private String key;
-    private String userID;
+    private String userId;
     private String comment;
     private String timestamp;
 
     public Comment() {
     }
 
-    public Comment(String key, String userID, String comment, String timestamp) {
+    public Comment(String key, String userId, String comment, String timestamp) {
         this.key = key;
-        this.userID = userID;
+        this.userId = userId;
         this.comment = comment;
         this.timestamp = timestamp;
     }
@@ -27,12 +27,12 @@ public class Comment implements Parcelable {
         this.key = key;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getComment() {
@@ -53,7 +53,7 @@ public class Comment implements Parcelable {
 
     protected Comment(Parcel in) {
         key = in.readString();
-        userID = in.readString();
+        userId = in.readString();
         timestamp = in.readString();
         comment = in.readString();
     }
@@ -61,7 +61,7 @@ public class Comment implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(key);
-        dest.writeString(userID);
+        dest.writeString(userId);
         dest.writeString(timestamp);
         dest.writeString(comment);
     }
