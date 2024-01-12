@@ -42,13 +42,13 @@ public class DetailArticleActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         adapter = new CommentAdapter();
 
+        // Initialize Time Format
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
         String time = sdf.format(new Date());
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         // Initialize Firebase Realtime Database
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -56,93 +56,112 @@ public class DetailArticleActivity extends AppCompatActivity {
         // Get the Article object from the intent
         Article article = getIntent().getParcelableExtra("article");
 
-        Log.i("MAIN", article.getContent());
-
         // Set the data to the views
         if (article != null) {
-            binding.tvTitle.setText(article.getTitle());
-            binding.tvCategory.setText(article.getCategory());
-            binding.tvMain.setText(Html.fromHtml(article.getContent()), TextView.BufferType.SPANNABLE);
-            binding.tvBadgeCategory.setText(article.getCategory());
-            binding.tvTimestamp.setText(article.getTimestamp());
-            binding.tvAuthor.setText(article.getAuthor());
-            binding.ivBookmark.setOnClickListener(view -> {
-                if (currentUser != null) {
-                    DatabaseReference savedArticlesRef = databaseReference.child("users").child(currentUser.getUid()).child("savedArticles");
-                    savedArticlesRef.orderByValue().equalTo(article.getTitle()).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
-                                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                                    childSnapshot.getRef().removeValue();
-                                }
-                                Toast.makeText(DetailArticleActivity.this, "Article unsaved", Toast.LENGTH_SHORT).show();
-                            } else {
-                                // Article title does not exist, save it
-                                savedArticlesRef.push().setValue(article.getTitle());
-                                Toast.makeText(DetailArticleActivity.this, "Article saved", Toast.LENGTH_SHORT).show();
-                            }
-                        }
+            setArticleData(article);
+            setBookmarkClickListener(article);
+            setThumbnailImage(article);
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.e("DetailArticleActivity", "Database error: " + databaseError.getMessage());
-                            Toast.makeText(DetailArticleActivity.this, "Error checking saved articles", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else {
-                    Log.d("DetailArticleActivity", "User not authenticated");
-                }
+            binding.sendComment.setOnClickListener(view -> addComment(article, time));
+
+            binding.ivBack.setOnClickListener(view -> {
+                finish();
+                setResult(RESULT_OK);
             });
 
-            StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-            final StorageReference imgRef = mStorageRef.child("/thumbnails/article-" + article.getTitle() + ".jpg");
-            imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(binding.ivThumbnail);
-            }).addOnFailureListener(exception -> {
-                Log.d("error===========", exception.getMessage());
-            });
-
-            binding.sendComment.setOnClickListener(view -> {
-                String comment = binding.tvComment.getText().toString().trim();
-                if (!comment.isEmpty()) {
-                    String articleTitle = article.getTitle();
-                    DatabaseReference articlesRef = databaseReference.child("article");
-                    articlesRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
-                                for (DataSnapshot articleSnapshot : dataSnapshot.getChildren()) {
-                                    DatabaseReference commentsRef = articleSnapshot.getRef().child("comments").push();
-                                    commentsRef.child("key").setValue(commentsRef.getKey());
-                                    commentsRef.child("comment").setValue(comment);
-                                    commentsRef.child("name").setValue(currentUser.getUid());
-                                    commentsRef.child("timestamp").setValue(time);
-                                    Toast.makeText(DetailArticleActivity.this, "Comment added successfully", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(DetailArticleActivity.this, "Article not found: " + articleTitle, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.e("DetailArticleActivity", "Database error: " + databaseError.getMessage());
-                            Toast.makeText(DetailArticleActivity.this, "Error adding comment", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else {
-                    // Handle the case where the comment is empty
-                    Toast.makeText(DetailArticleActivity.this, "Comment cannot be empty", Toast.LENGTH_SHORT).show();
-                }
-            });
+            binding.rvComment.setLayoutManager(new LinearLayoutManager(this));
+            binding.rvComment.setAdapter(adapter);
         }
+    }
 
-        binding.ivBack.setOnClickListener(view -> {
-            finish();
-            setResult(RESULT_OK);
+    private void setArticleData(Article article) {
+        binding.tvTitle.setText(article.getTitle());
+        binding.tvCategory.setText(article.getCategory());
+        binding.tvMain.setText(Html.fromHtml(article.getContent()), TextView.BufferType.SPANNABLE);
+        binding.tvBadgeCategory.setText(article.getCategory());
+        binding.tvTimestamp.setText(article.getTimestamp());
+        binding.tvAuthor.setText(article.getAuthor());
+    }
+
+    private void setBookmarkClickListener(Article article) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            DatabaseReference savedArticlesRef = FirebaseDatabase.getInstance()
+                    .getReference().child("users").child(currentUser.getUid()).child("savedArticles");
+
+            binding.ivBookmark.setOnClickListener(view -> toggleBookmark(savedArticlesRef, article.getTitle()));
+        }
+    }
+
+    private void toggleBookmark(DatabaseReference savedArticlesRef, String articleTitle) {
+        savedArticlesRef.orderByValue().equalTo(articleTitle).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                        childSnapshot.getRef().removeValue();
+                    }
+                    Toast.makeText(DetailArticleActivity.this, "Article unsaved", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Article title does not exist, save it
+                    savedArticlesRef.push().setValue(articleTitle);
+                    Toast.makeText(DetailArticleActivity.this, "Article saved", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("DetailArticleActivity", "Database error: " + databaseError.getMessage());
+                Toast.makeText(DetailArticleActivity.this, "Error checking saved articles", Toast.LENGTH_SHORT).show();
+            }
         });
-        binding.rvComment.setLayoutManager(new LinearLayoutManager(this));
-        binding.rvComment.setAdapter(adapter);
+    }
+
+    private void setThumbnailImage(Article article) {
+        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
+        final StorageReference imgRef = mStorageRef.child("/thumbnails/article-" + article.getTitle() + ".jpg");
+
+        imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(binding.ivThumbnail);
+        }).addOnFailureListener(exception -> {
+            Log.d("error===========", exception.getMessage());
+        });
+    }
+
+    private void addComment(Article article, String time) {
+        String comment = binding.tvComment.getText().toString().trim();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (!comment.isEmpty() && currentUser != null) {
+            String articleTitle = article.getTitle();
+            DatabaseReference articlesRef = FirebaseDatabase.getInstance().getReference().child("article");
+
+            articlesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot articleSnapshot : dataSnapshot.getChildren()) {
+                            DatabaseReference commentsRef = articleSnapshot.getRef().child("comments").push();
+                            commentsRef.child("key").setValue(commentsRef.getKey());
+                            commentsRef.child("comment").setValue(comment);
+                            commentsRef.child("name").setValue(currentUser.getUid());
+                            commentsRef.child("timestamp").setValue(time);
+                            Toast.makeText(DetailArticleActivity.this, "Comment added successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(DetailArticleActivity.this, "Article not found: " + articleTitle, Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("DetailArticleActivity", "Database error: " + databaseError.getMessage());
+                    Toast.makeText(DetailArticleActivity.this, "Error adding comment", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            // Handle the case where the comment is empty
+            Toast.makeText(DetailArticleActivity.this, "Comment cannot be empty", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -161,7 +161,7 @@ public class OnBoardingActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             // Save user information to the Realtime Database
-                            saveUserInfoToDatabase(user); //TODO: Check if email exist, dont do this!
+                            saveUserInfoToDatabase(user);
 
                             Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
                             startActivity(intent);

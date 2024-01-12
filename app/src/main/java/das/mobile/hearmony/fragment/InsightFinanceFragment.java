@@ -94,6 +94,11 @@ public class InsightFinanceFragment extends Fragment {
         binding.tvProgress.setText(String.valueOf(score));
     }
 
+    public void onResume()
+    {
+        super.onResume();
+        setUpFirebaseRecyclerView();
+    }
 
     @Override
     public void onStart() {

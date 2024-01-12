@@ -74,6 +74,11 @@ public class InsightAllFragment extends Fragment {
         binding.rvInsight.setAdapter(adapter);
     }
 
+    public void onResume()
+    {
+        super.onResume();
+        setUpFirebaseRecyclerView();
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -83,4 +88,5 @@ public class InsightAllFragment extends Fragment {
     public void onStop() {
         super.onStop();
     }
+
 }
