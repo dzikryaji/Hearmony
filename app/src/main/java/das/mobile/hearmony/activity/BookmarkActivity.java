@@ -29,6 +29,8 @@ public class BookmarkActivity extends AppCompatActivity {
     private List<Article> articleList;
     private List<String> articleIdList;
     private FirebaseAuth mAuth;
+    private static final int DETAIL_ARTICLE_REQUEST = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +42,10 @@ public class BookmarkActivity extends AppCompatActivity {
         binding.ivBack.setOnClickListener(view -> {
             finish();
         });
-
     }
 
-
+    // Modify setUpFirebaseRecyclerView method
     private void setUpFirebaseRecyclerView() {
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid()).child("savedArticles");
@@ -53,7 +53,7 @@ public class BookmarkActivity extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                updateArticleIdList(dataSnapshot);
+                updateArticleIdList(dataSnapshot);  // Pass the DataSnapshot to updateArticleIdList
                 updateArticleList();
             }
 
@@ -64,7 +64,7 @@ public class BookmarkActivity extends AppCompatActivity {
         });
     }
 
-    private void updateArticleIdList(DataSnapshot dataSnapshot){
+    private void updateArticleIdList(DataSnapshot dataSnapshot) {
         articleIdList.clear();
         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             String articleId = snapshot.getValue(String.class);
@@ -80,18 +80,17 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 articleList.clear();
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Article article = snapshot.getValue(Article.class);
                     Log.i("Article Id List", articleIdList.toString());
                     Log.i("Article id", article.getTitle());
-                    for (String articleId : articleIdList){
-                        Log.i("Article Id List@", articleId);
-                        String id = article.getTitle();
-                        if(articleId.equals(id)){
-                            Log.i("Tag", "Masuk");
-                            articleList.add(article);
-                            Log.i("Tag", articleList.toString());
-                        }
+
+                    // Check if the article is in the saved list
+                    if (articleIdList.contains(article.getTitle())) {
+                        Log.i("Tag", "Masuk");
+                        articleList.add(article);
+                        Log.i("Tag", articleList.toString());
                     }
                 }
 
@@ -101,13 +100,12 @@ public class BookmarkActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle error if needed
             }
         });
     }
 
     private void setUpAdapter() {
-        Log.i("setupadapter", articleList.toString());
         adapter = new InsightAdapter(this, articleList);
         binding.rvInsight.setLayoutManager(new LinearLayoutManager(this));
         binding.rvInsight.setAdapter(adapter);
@@ -121,5 +119,12 @@ public class BookmarkActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
+    }
+
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        setUpFirebaseRecyclerView();
     }
 }

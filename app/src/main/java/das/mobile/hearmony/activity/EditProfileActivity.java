@@ -34,7 +34,9 @@ public class EditProfileActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance("gs://hackfest-ef21a.appspot.com");
 
 
-        binding.ivBack.setOnClickListener(view -> finish());
+        binding.ivBack.setOnClickListener(view -> {
+            onBackPressed();
+        });
         binding.cvEditAvatar.setOnClickListener(view -> {
             Intent intent = new Intent(EditProfileActivity.this, EditAvatarActivity.class);
             startActivity(intent);
@@ -46,32 +48,34 @@ public class EditProfileActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser != null) {
-            String uid = currentUser.getUid();
-
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
-            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        String currentName = dataSnapshot.child("name").getValue(String.class);
-                        String currentEmail = dataSnapshot.child("email").getValue(String.class);
-                        String currentPhone = dataSnapshot.child("phoneNum").getValue(String.class);
-                        int avatarValue = dataSnapshot.child("avatar").getValue(Integer.class);
-
-                        // Set hints based on existing user data
-                        binding.etName.setHint(currentName);
-                        binding.etEmail.setHint(currentEmail);
-                        binding.etPhone.setHint(currentPhone);
-                        setProfileImage(avatarValue);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // Handle errors if any
-                }
-            });
+            getUserInformation(currentUser.getUid());
         }
+    }
+
+    private void getUserInformation(String uid) {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String currentName = dataSnapshot.child("name").getValue(String.class);
+                    String currentEmail = dataSnapshot.child("email").getValue(String.class);
+                    String currentPhone = dataSnapshot.child("phoneNum").getValue(String.class);
+                    int avatarValue = dataSnapshot.child("avatar").getValue(Integer.class);
+
+                    // Set hints based on existing user data
+                    binding.etName.setHint(currentName);
+                    binding.etEmail.setHint(currentEmail);
+                    binding.etPhone.setHint(currentPhone);
+                    setProfileImage(avatarValue);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors if any
+            }
+        });
     }
 
     private void setProfileImage(int avatarValue) {
@@ -82,8 +86,26 @@ public class EditProfileActivity extends AppCompatActivity {
             case 2:
                 binding.ivPfp.setImageResource(R.drawable.img_avatar2);
                 break;
-            default:
+            case 3:
                 binding.ivPfp.setImageResource(R.drawable.img_avatar3);
+                break;
+            case 4:
+                binding.ivPfp.setImageResource(R.drawable.img_avatar4);
+                break;
+            case 5:
+                binding.ivPfp.setImageResource(R.drawable.img_avatar5);
+                break;
+            case 6:
+                binding.ivPfp.setImageResource(R.drawable.img_avatar6);
+                break;
+            case 7:
+                binding.ivPfp.setImageResource(R.drawable.img_avatar7);
+                break;
+            case 8:
+                binding.ivPfp.setImageResource(R.drawable.img_avatar8);
+                break;
+            default:
+                binding.ivPfp.setImageResource(R.drawable.img_avatar1);
                 break;
         }
     }
@@ -113,5 +135,12 @@ public class EditProfileActivity extends AppCompatActivity {
             Toast.makeText(EditProfileActivity.this, "Data changes saved successfully.",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        getUserInformation(currentUser.getUid());
     }
 }

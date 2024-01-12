@@ -40,6 +40,7 @@ public class DetailArticleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDetailArticleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        adapter = new CommentAdapter();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
@@ -139,6 +140,7 @@ public class DetailArticleActivity extends AppCompatActivity {
 
         binding.ivBack.setOnClickListener(view -> {
             finish();
+            setResult(RESULT_OK);
         });
         binding.rvComment.setLayoutManager(new LinearLayoutManager(this));
         binding.rvComment.setAdapter(adapter);

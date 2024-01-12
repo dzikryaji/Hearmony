@@ -112,8 +112,26 @@ public class ProfileFragment extends Fragment {
             case 2:
                 binding.profilepict.setImageResource(R.drawable.img_avatar2);
                 break;
-            default:
+            case 3:
                 binding.profilepict.setImageResource(R.drawable.img_avatar3);
+                break;
+            case 4:
+                binding.profilepict.setImageResource(R.drawable.img_avatar4);
+                break;
+            case 5:
+                binding.profilepict.setImageResource(R.drawable.img_avatar5);
+                break;
+            case 6:
+                binding.profilepict.setImageResource(R.drawable.img_avatar6);
+                break;
+            case 7:
+                binding.profilepict.setImageResource(R.drawable.img_avatar7);
+                break;
+            case 8:
+                binding.profilepict.setImageResource(R.drawable.img_avatar8);
+                break;
+            default:
+                binding.profilepict.setImageResource(R.drawable.img_avatar1);
                 break;
         }
     }
@@ -124,5 +142,11 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
         getActivity().finish();
+    }
+
+    public void onResume()
+    {
+        super.onResume();
+        setupView();
     }
 }
