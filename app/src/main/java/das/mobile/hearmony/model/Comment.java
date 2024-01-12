@@ -71,15 +71,15 @@ public class Comment implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Article> CREATOR = new Creator<Article>() {
+    public static final Creator<Comment> CREATOR = new Creator<Comment>() {
         @Override
-        public Article createFromParcel(Parcel in) {
-            return new Article(in);
+        public Comment createFromParcel(Parcel in) {
+            return new Comment(in);
         }
 
         @Override
-        public Article[] newArray(int size) {
-            return new Article[size];
+        public Comment[] newArray(int size) {
+            return new Comment[size];
         }
     };
 }
