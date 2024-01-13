@@ -1,5 +1,6 @@
 package das.mobile.hearmony.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import das.mobile.hearmony.R;
 import das.mobile.hearmony.databinding.ItemCommentBinding;
 import das.mobile.hearmony.model.Comment;
 import das.mobile.hearmony.model.User;
@@ -54,7 +58,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
                             holder.binding.tvComment.setText(comment.getComment());
                             holder.binding.tvName.setText(user.getName());
                             holder.binding.tvTimestamp.setText(formatTimeStamp(comment.getTimestamp()));
-                            setAvatar(holder, user.getAvatar());
+                            setAvatar(holder, user.getProfilePict());
                         } else {
                             holder.binding.getRoot().setVisibility(View.GONE);
                         }
@@ -148,33 +152,15 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         }
 
     }
-    private void setAvatar(CommentViewHolder holder, int avatar) {
-        switch (avatar){
-            case 2 :
-                holder.binding.ivAvatar.setImageResource(R.drawable.img_avatar2);
-                break;
-            case 3 :
-                holder.binding.ivAvatar.setImageResource(R.drawable.img_avatar3);
-                break;
-            case 4 :
-                holder.binding.ivAvatar.setImageResource(R.drawable.img_avatar4);
-                break;
-            case 5 :
-                holder.binding.ivAvatar.setImageResource(R.drawable.img_avatar5);
-                break;
-            case 6 :
-                holder.binding.ivAvatar.setImageResource(R.drawable.img_avatar6);
-                break;
-            case 7 :
-                holder.binding.ivAvatar.setImageResource(R.drawable.img_avatar7);
-                break;
-            case 8 :
-                holder.binding.ivAvatar.setImageResource(R.drawable.img_avatar8);
-                break;
-            default :
-                holder.binding.ivAvatar.setImageResource(R.drawable.img_avatar1);
-                break;
-        }
+    private void setAvatar(CommentViewHolder holder, String avatarValue) {
+        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
+        final StorageReference imgRef = mStorageRef.child("/avatar/" + avatarValue + ".jpg");
+
+        imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(holder.binding.ivAvatar);
+        }).addOnFailureListener(exception -> {
+            Log.d("error===========", exception.getMessage());
+        });
     }
 
     public static class CommentViewHolder extends RecyclerView.ViewHolder {

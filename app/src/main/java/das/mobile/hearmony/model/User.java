@@ -4,22 +4,20 @@ public class User {
     private String id;
     private String name;
     private String email;
-    private int avatar;
+    private String profilePict;
     private String phoneNum;
 
 
     public User() {
     }
 
-    public User(String id, String name, String email, int avatar, String phoneNum) {
+    public User(String id, String name, String email, String profilePict, String phoneNum) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.avatar = avatar;
+        this.profilePict = profilePict;
         this.phoneNum = phoneNum;
     }
-
-    // Add getters and setters as needed
 
     public String getId() {
         return id;
@@ -45,12 +43,12 @@ public class User {
         this.email = email;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public String getProfilePict() {
+        return profilePict;
     }
 
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
+    public void setProfilePict(String profilePict) {
+        this.profilePict = profilePict;
     }
 
     public String getPhoneNum() {

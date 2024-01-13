@@ -2,6 +2,7 @@ package das.mobile.hearmony.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +15,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
-import das.mobile.hearmony.R;
 import das.mobile.hearmony.databinding.ActivityEditProfileBinding;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -61,7 +64,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     String currentName = dataSnapshot.child("name").getValue(String.class);
                     String currentEmail = dataSnapshot.child("email").getValue(String.class);
                     String currentPhone = dataSnapshot.child("phoneNum").getValue(String.class);
-                    int avatarValue = dataSnapshot.child("avatar").getValue(Integer.class);
+                    String avatarValue = dataSnapshot.child("profilePict").getValue(String.class);
 
                     // Set hints based on existing user data
                     binding.etName.setHint(currentName);
@@ -78,36 +81,15 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void setProfileImage(int avatarValue) {
-        switch (avatarValue) {
-            case 1:
-                binding.ivPfp.setImageResource(R.drawable.img_avatar1);
-                break;
-            case 2:
-                binding.ivPfp.setImageResource(R.drawable.img_avatar2);
-                break;
-            case 3:
-                binding.ivPfp.setImageResource(R.drawable.img_avatar3);
-                break;
-            case 4:
-                binding.ivPfp.setImageResource(R.drawable.img_avatar4);
-                break;
-            case 5:
-                binding.ivPfp.setImageResource(R.drawable.img_avatar5);
-                break;
-            case 6:
-                binding.ivPfp.setImageResource(R.drawable.img_avatar6);
-                break;
-            case 7:
-                binding.ivPfp.setImageResource(R.drawable.img_avatar7);
-                break;
-            case 8:
-                binding.ivPfp.setImageResource(R.drawable.img_avatar8);
-                break;
-            default:
-                binding.ivPfp.setImageResource(R.drawable.img_avatar1);
-                break;
-        }
+    private void setProfileImage(String avatarValue) {
+        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
+        final StorageReference imgRef = mStorageRef.child("/avatar/" + avatarValue + ".jpg");
+
+        imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(binding.ivPfp);
+        }).addOnFailureListener(exception -> {
+            Log.d("error===========", exception.getMessage());
+        });
     }
     private void saveChanges() {
         FirebaseUser currentUser = mAuth.getCurrentUser();

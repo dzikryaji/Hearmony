@@ -2,6 +2,7 @@ package das.mobile.hearmony.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import das.mobile.hearmony.R;
 import das.mobile.hearmony.activity.BookmarkActivity;
@@ -70,7 +74,7 @@ public class ProfileFragment extends Fragment {
                     if (dataSnapshot.exists()) {
                         String displayName = dataSnapshot.child("name").getValue(String.class);
                         String phoneNum = dataSnapshot.child("phoneNum").getValue(String.class);
-                        int avatarValue = dataSnapshot.child("avatar").getValue(Integer.class);
+                        String avatarValue = dataSnapshot.child("profilePict").getValue(String.class);
 
                         binding.tvName.setText(displayName);
 
@@ -104,36 +108,15 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void setProfileImage(int avatarValue) {
-        switch (avatarValue) {
-            case 1:
-                binding.profilepict.setImageResource(R.drawable.img_avatar1);
-                break;
-            case 2:
-                binding.profilepict.setImageResource(R.drawable.img_avatar2);
-                break;
-            case 3:
-                binding.profilepict.setImageResource(R.drawable.img_avatar3);
-                break;
-            case 4:
-                binding.profilepict.setImageResource(R.drawable.img_avatar4);
-                break;
-            case 5:
-                binding.profilepict.setImageResource(R.drawable.img_avatar5);
-                break;
-            case 6:
-                binding.profilepict.setImageResource(R.drawable.img_avatar6);
-                break;
-            case 7:
-                binding.profilepict.setImageResource(R.drawable.img_avatar7);
-                break;
-            case 8:
-                binding.profilepict.setImageResource(R.drawable.img_avatar8);
-                break;
-            default:
-                binding.profilepict.setImageResource(R.drawable.img_avatar1);
-                break;
-        }
+    private void setProfileImage(String avatarValue) {
+        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
+        final StorageReference imgRef = mStorageRef.child("/avatar/" + avatarValue + ".jpg");
+
+        imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(binding.profilepict);
+        }).addOnFailureListener(exception -> {
+            Log.d("error===========", exception.getMessage());
+        });
     }
 
     private void logout() {

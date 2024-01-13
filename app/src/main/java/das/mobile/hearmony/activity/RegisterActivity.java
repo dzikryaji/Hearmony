@@ -159,7 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
             String userEmail = user.getEmail();
 
             // Create a user object
-            User userInfo = new User(userId, userName, userEmail, 1, "");
+            User userInfo = new User(userId, userName, userEmail, "1", "");
 
             // Save user information to the Realtime Database
             db.getReference().child("users").child(user.getUid()).setValue(userInfo);
