@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_profile"
+            android:background="@drawable/bg_curved_bottom_left_corner_primary"
             android:orientation="vertical"
             android:paddingHorizontal="37dp"
             android:paddingVertical="30dp">

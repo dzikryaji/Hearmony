@@ -10,7 +10,7 @@
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_profile"
+        android:background="@drawable/bg_curved_bottom_left_corner_primary"
         android:paddingBottom="25dp"
         app:layout_constraintTop_toTopOf="parent">
 

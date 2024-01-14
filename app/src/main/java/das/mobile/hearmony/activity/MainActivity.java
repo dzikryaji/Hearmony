@@ -11,7 +11,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import das.mobile.hearmony.R;
 import das.mobile.hearmony.databinding.ActivityMainBinding;
-import das.mobile.hearmony.fragment.ChatFragment;
+import das.mobile.hearmony.fragment.ChatConsultationFragment;
 import das.mobile.hearmony.fragment.GoalFragment;
 import das.mobile.hearmony.fragment.HomeFragment;
 import das.mobile.hearmony.fragment.InsightFragment;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         HomeFragment homeFragment = new HomeFragment();
         InsightFragment insightFragment = new InsightFragment();
         GoalFragment goalFragment = new GoalFragment();
-        ChatFragment chatFragment = new ChatFragment();
+        ChatConsultationFragment chatConsultationFragment = new ChatConsultationFragment();
         ProfileFragment profileFragment = new ProfileFragment();
 
         binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.nav_goal) {
                     setCurrentFragment(goalFragment);
                 } else if (item.getItemId() == R.id.nav_chat) {
-                    setCurrentFragment(chatFragment);
+                    setCurrentFragment(chatConsultationFragment);
                 } else if (item.getItemId() == R.id.nav_profile) {
                     setCurrentFragment(profileFragment);
                 }
