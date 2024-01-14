@@ -14,7 +14,7 @@
         android:paddingBottom="55dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_topbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -29,6 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white" />
 
             <TextView
@@ -36,11 +39,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:fontFamily="@font/manrope_extrabold"
+                android:gravity="center"
                 android:text="Select an avatar"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_history"
