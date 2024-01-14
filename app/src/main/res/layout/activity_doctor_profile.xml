@@ -50,8 +50,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="20dp">
+            android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_profile"
@@ -304,18 +303,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="14dp"
-                        tools:listitem="@layout/item_consultation_date"
-                        tools:itemCount="2"/>
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_consultation_date" />
 
                     <TextView
                         android:id="@+id/tv_view_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="14dp"
+                        android:layout_marginTop="5dp"
                         android:fontFamily="@font/manrope_medium"
                         android:text="View All Locations and Schedules"
                         android:textColor="#2A7FBD"
-                        android:layout_marginTop="5dp"
                         android:textSize="6sp" />
 
                 </LinearLayout>
@@ -486,10 +485,12 @@
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/btn_make_appointment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"
                 android:layout_marginTop="44dp"
+                android:layout_marginBottom="20dp"
                 android:text="Make a Consultation Appointment" />
 
         </LinearLayout>

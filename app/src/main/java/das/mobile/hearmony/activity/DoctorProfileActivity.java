@@ -1,5 +1,6 @@
 package das.mobile.hearmony.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -27,6 +28,10 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
         binding.rvConsultationDate.setAdapter(new ConsultationDateAdapter());
         binding.rvConsultationDate.setLayoutManager(new LinearLayoutManager(this));
+        binding.btnMakeAppointment.setOnClickListener(view -> {
+            Intent intent = new Intent(this, OrderDataActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void accordionToggle(View accordionItem) {
