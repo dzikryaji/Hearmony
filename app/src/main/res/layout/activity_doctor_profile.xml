@@ -48,8 +48,10 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/ll_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
@@ -331,8 +333,10 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/ll_doctor_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
                     android:orientation="vertical"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp">
@@ -371,8 +375,10 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/ll_medical_treatment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
                     android:orientation="vertical"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp">
@@ -412,8 +418,10 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/ll_practical_experience"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
                     android:orientation="vertical"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp">
@@ -453,8 +461,10 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/ll_educational_background"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
                     android:orientation="vertical"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp">

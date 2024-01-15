@@ -13,6 +13,8 @@ import das.mobile.hearmony.databinding.ItemConsultationDateBinding;
 public class ConsultationDateAdapter extends RecyclerView.Adapter<ConsultationDateAdapter.ConsultationDateViewHolder> {
 
     private Context context;
+    private int checkedDay = -1;
+    private int checkedHour = -1;
 
     @NonNull
     @Override
@@ -23,7 +25,13 @@ public class ConsultationDateAdapter extends RecyclerView.Adapter<ConsultationDa
 
     @Override
     public void onBindViewHolder(@NonNull ConsultationDateViewHolder holder, int position) {
-        holder.binding.rvHour.setAdapter(new ConsultationHourAdapter());
+        ConsultationHourAdapter hourAdapter;
+        if (checkedDay == position){
+            hourAdapter = new ConsultationHourAdapter(this, position, checkedHour);
+        } else {
+            hourAdapter = new ConsultationHourAdapter(this, position);
+        }
+        holder.binding.rvHour.setAdapter(hourAdapter);
         holder.binding.rvHour.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
     }
 
@@ -32,7 +40,23 @@ public class ConsultationDateAdapter extends RecyclerView.Adapter<ConsultationDa
         return 2;
     }
 
-    public class ConsultationDateViewHolder extends RecyclerView.ViewHolder {
+    public int getCheckedDay() {
+        return checkedDay;
+    }
+
+    public void setCheckedDay(int checkedDay) {
+        this.checkedDay = checkedDay;
+    }
+
+    public int getCheckedHour() {
+        return checkedHour;
+    }
+
+    public void setCheckedHour(int checkedHour) {
+        this.checkedHour = checkedHour;
+    }
+
+    public static class ConsultationDateViewHolder extends RecyclerView.ViewHolder {
         ItemConsultationDateBinding binding;
 
         public ConsultationDateViewHolder(@NonNull ItemConsultationDateBinding binding) {

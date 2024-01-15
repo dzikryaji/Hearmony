@@ -5,16 +5,17 @@
     android:paddingVertical="6dp"
     android:paddingEnd="5dp">
 
-    <TextView
-        android:id="@+id/tv_hour"
+    <RadioButton
+        android:id="@+id/rg_hour"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_consultation_hour"
         android:fontFamily="@font/manrope_medium"
         android:gravity="center"
+        android:button="@null"
         android:paddingVertical="6dp"
         android:text="09.00 - 12.00"
         android:textColor="#1A66A0"
-        android:textSize="5sp" />
+        android:textSize="5sp"/>
 
 </LinearLayout>

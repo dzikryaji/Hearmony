@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary_green">#FF57CC99</color>
     <color name="dark_green">#4FBA8B</color>
+    <color name="accent_green">#79D6AD</color>
     <color name="gray">#D7DFE9</color>
     <color name="slate_300">#AFBACA</color>
     <color name="danger_red">#FF574D</color>
