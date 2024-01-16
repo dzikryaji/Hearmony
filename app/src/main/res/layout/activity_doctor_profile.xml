@@ -139,6 +139,7 @@
                                     android:src="@drawable/ic_doctor" />
 
                                 <TextView
+                                    android:id="@+id/roles"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="4dp"
@@ -258,6 +259,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/officeName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
@@ -267,6 +269,7 @@
                                 android:textSize="6sp" />
 
                             <TextView
+                                android:id="@+id/officeLocation"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
@@ -384,7 +387,7 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:id="@+id/tv_medicat_treatment_title"
+                        android:id="@+id/tv_medical_treatment_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/manrope_semibold"
