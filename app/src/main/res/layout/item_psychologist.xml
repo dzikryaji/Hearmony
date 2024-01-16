@@ -90,6 +90,7 @@
                             android:src="@drawable/ic_doctor" />
 
                         <TextView
+                            android:id="@+id/category"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
@@ -115,6 +116,7 @@
                             android:src="@drawable/ic_office" />
 
                         <TextView
+                            android:id="@+id/officeLocation"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
@@ -140,6 +142,7 @@
                             android:src="@drawable/ic_distance" />
 
                         <TextView
+                            android:id="@+id/email"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

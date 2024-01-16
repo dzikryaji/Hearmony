@@ -2,11 +2,17 @@ package das.mobile.hearmony.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,10 +37,22 @@ public class PsychologistAdapter extends RecyclerView.Adapter<PsychologistAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PsychologistViewHolder holder, int position) {
+
         Psikolog psikolog = psikologList.get(position);
+        final StorageReference imgRef = FirebaseStorage.getInstance().getReference().child("/psikolog/psikolog" + psikolog.getId() + ".jpg");
+
+        imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(holder.binding.ivProfile);
+        }).addOnFailureListener(exception -> {
+            Log.d("error===========", exception.getMessage());
+        });
         holder.binding.tvName.setText(psikolog.getName());
+        holder.binding.category.setText(psikolog.getRoles());
+        holder.binding.officeLocation.setText(psikolog.getOfficeLocation());
+        holder.binding.email.setText(psikolog.getEmail());
         holder.binding.btnMakeAppointment.setOnClickListener(view -> {
             Intent intent = new Intent(context, DoctorProfileActivity.class);
+            intent.putExtra("psikolog", psikolog);
             context.startActivity(intent);
         });
     }
