@@ -1,8 +1,8 @@
 package das.mobile.hearmony.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,6 +19,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import das.mobile.hearmony.R;
+import das.mobile.hearmony.activity.MainActivity;
 import das.mobile.hearmony.databinding.FragmentGoalBinding;
 
 public class GoalFragment extends Fragment {
@@ -61,16 +63,19 @@ public class GoalFragment extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(requireContext());
         queue.add(request);
 
-
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Intent intent = new Intent(getActivity(), HomeFragment.class);
-                startActivity(intent);
-                getActivity().finish();
+                // Handle the back press event here
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if (mainActivity != null) {
+                    // Use the existing bottom navigation logic to switch to the HomeFragment
+                    MenuItem item = mainActivity.binding.bottomNav.getMenu().findItem(R.id.nav_home);
+                    item.setChecked(true);
+                    mainActivity.setCurrentFragment(new HomeFragment(mainActivity));
+                }
             }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+        });
     }
 
     @Override

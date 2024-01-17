@@ -65,6 +65,7 @@
 
 
                     <TextView
+                        android:id="@+id/tv_userName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/manrope_extrabold"
@@ -76,6 +77,7 @@
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/set_avatar"
                     android:layout_width="49dp"
                     android:layout_height="49dp"
                     android:background="@drawable/bg_score_red"
@@ -315,6 +317,7 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/see_consultChat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/manrope"
@@ -564,6 +567,7 @@
                             android:textSize="8sp" />
 
                         <Button
+                            android:id="@+id/see_goalRecommendation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
@@ -599,6 +603,7 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/see_Insight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/manrope"
@@ -707,6 +712,7 @@
     </ScrollView>
 
     <Button
+        android:id="@+id/button_consultChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"

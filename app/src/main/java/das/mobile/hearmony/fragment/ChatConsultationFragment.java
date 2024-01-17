@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -20,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import das.mobile.hearmony.R;
+import das.mobile.hearmony.activity.MainActivity;
 import das.mobile.hearmony.adapter.PsychologistAdapter;
 import das.mobile.hearmony.databinding.FragmentChatConsultationBinding;
 import das.mobile.hearmony.model.Psikolog;
@@ -30,6 +34,25 @@ public class ChatConsultationFragment extends Fragment {
     PsychologistAdapter adapter;
     ArrayList<Psikolog> psychologistList;
     ArrayList<Psikolog> filteredList;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back press event here
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if (mainActivity != null) {
+                    // Use the existing bottom navigation logic to switch to the HomeFragment
+                    MenuItem item = mainActivity.binding.bottomNav.getMenu().findItem(R.id.nav_home);
+                    item.setChecked(true);
+                    mainActivity.setCurrentFragment(new HomeFragment(mainActivity));
+                }
+            }
+        });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -28,9 +30,10 @@ import das.mobile.hearmony.R;
 import das.mobile.hearmony.activity.BookmarkActivity;
 import das.mobile.hearmony.activity.EditProfileActivity;
 import das.mobile.hearmony.activity.LoginActivity;
+import das.mobile.hearmony.activity.MainActivity;
 import das.mobile.hearmony.databinding.FragmentProfileBinding;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment  {
 
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignIn;
@@ -40,6 +43,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mAuth = FirebaseAuth.getInstance();
 
         // Initialize mGoogleSignIn
@@ -50,6 +54,20 @@ public class ProfileFragment extends Fragment {
 
         // Initialize Firebase Storage
         storage = FirebaseStorage.getInstance("gs://hackfest-ef21a.appspot.com");
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back press event here
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if (mainActivity != null) {
+                    // Use the existing bottom navigation logic to switch to the HomeFragment
+                    MenuItem item = mainActivity.binding.bottomNav.getMenu().findItem(R.id.nav_home);
+                    item.setChecked(true);
+                    mainActivity.setCurrentFragment(new HomeFragment(mainActivity));
+                }
+            }
+        });
     }
 
     @Override
@@ -57,9 +75,9 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         setupView();
-
         return binding.getRoot();
     }
+
 
     private void setupView() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -125,11 +143,5 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
         getActivity().finish();
-    }
-
-    public void onResume()
-    {
-        super.onResume();
-        setupView();
     }
 }
