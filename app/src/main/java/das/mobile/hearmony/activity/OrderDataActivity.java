@@ -18,6 +18,12 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import das.mobile.hearmony.adapter.ConsultationDateAdapter;
+import das.mobile.hearmony.adapter.ConsultationHourAdapter;
 import das.mobile.hearmony.databinding.ActivityOrderDataBinding;
 import das.mobile.hearmony.model.Psikolog;
 
@@ -33,7 +39,12 @@ public class OrderDataActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Psikolog psikolog = getIntent().getParcelableExtra("psikolog");
-        setPsikologData(psikolog);
+        if (psikolog != null) {
+            setPsikologData(psikolog);
+        } else {
+            Log.e("OrderDataActivity", "Psikolog object is null");
+        }
+
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -59,16 +70,24 @@ public class OrderDataActivity extends AppCompatActivity {
                 // Handle errors if any
             }
         });
+    }
+
+    private void setPsikologData(Psikolog psikolog) {
+        String selectedDate = getIntent().getStringExtra("selectedDate");
+        String selectedHour = getIntent().getStringExtra("selectedHour");
+
+        binding.selectedDate.setText(ConsultationDateAdapter.formatDateString(selectedDate));
+        binding.selectedHour.setText(ConsultationHourAdapter.formatHour(selectedHour));
 
         binding.ivBack.setOnClickListener(view -> finish());
         binding.btnMakeAppointment.setOnClickListener(view -> {
             Intent intent = new Intent(this, MakeAppoinmentActivity.class);
             intent.putExtra("psikolog", psikolog);
+            intent.putExtra("selectedDate", selectedDate);
+            intent.putExtra("selectedHour", selectedHour);
             startActivity(intent);
         });
-    }
 
-    private void setPsikologData(Psikolog psikolog) {
         binding.tvDoctorName.setText(psikolog.getName());
         binding.tvCategory.setText(psikolog.getRoles());
         binding.officeName.setText(psikolog.getOfficeName());
@@ -80,5 +99,18 @@ public class OrderDataActivity extends AppCompatActivity {
         }).addOnFailureListener(exception -> {
             Log.d("error===========", exception.getMessage());
         });
+    }
+
+    public static String formatDateString(String inputDate) {
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = inputFormat.parse(inputDate);
+
+            SimpleDateFormat outputFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy");
+            return outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ""; // Handle the exception based on your needs
+        }
     }
 }

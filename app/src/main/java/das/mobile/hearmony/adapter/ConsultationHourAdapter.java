@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import das.mobile.hearmony.databinding.ItemConsultationHourBinding;
@@ -22,6 +24,7 @@ public class ConsultationHourAdapter extends RecyclerView.Adapter<ConsultationHo
     public ConsultationHourAdapter(ConsultationDateAdapter parentAdapter, int dayPosition, List<Consult> consults) {
         this.parentAdapter = parentAdapter;
         this.dayPosition = dayPosition;
+        Collections.sort(consults, new HourComparator());
         this.consults = consults;
     }
 
@@ -39,7 +42,7 @@ public class ConsultationHourAdapter extends RecyclerView.Adapter<ConsultationHo
     @Override
     public void onBindViewHolder(@NonNull ConsultationHourViewHolder holder, int position) {
         Consult hour = consults.get(position);
-        holder.binding.rgHour.setText(hour.getHour() + ":00 - " + (Integer.parseInt(hour.getHour()) + 1) + ":00");
+        holder.binding.rgHour.setText(formatHour(hour.getHour()));
         if (checkedHour == position) {
             holder.binding.rgHour.setChecked(true);
             holder.binding.rgHour.setTextColor(Color.parseColor("#57CC99"));
@@ -54,12 +57,14 @@ public class ConsultationHourAdapter extends RecyclerView.Adapter<ConsultationHo
         });
     }
 
+    public static String formatHour(String hour) {
+        return hour + ":00 - " + (Integer.parseInt(hour) + 1) + ":00";
+    }
 
     @Override
     public int getItemCount() {
         return consults.size();
     }
-
 
     public static class ConsultationHourViewHolder extends RecyclerView.ViewHolder {
         ItemConsultationHourBinding binding;
@@ -67,6 +72,12 @@ public class ConsultationHourAdapter extends RecyclerView.Adapter<ConsultationHo
         public ConsultationHourViewHolder(@NonNull ItemConsultationHourBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+        }
+    }
+    private static class HourComparator implements Comparator<Consult> {
+        @Override
+        public int compare(Consult consult1, Consult consult2) {
+            return Integer.compare(Integer.parseInt(consult1.getHour()), Integer.parseInt(consult2.getHour()));
         }
     }
 }

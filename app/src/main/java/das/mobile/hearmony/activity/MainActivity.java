@@ -18,7 +18,8 @@ import das.mobile.hearmony.fragment.InsightFragment;
 import das.mobile.hearmony.fragment.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
+    public ActivityMainBinding binding;
+    private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        HomeFragment homeFragment = new HomeFragment();
+        HomeFragment homeFragment = new HomeFragment(this);
         InsightFragment insightFragment = new InsightFragment();
         GoalFragment goalFragment = new GoalFragment();
         ChatConsultationFragment chatConsultationFragment = new ChatConsultationFragment();
@@ -50,11 +51,20 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
         setCurrentFragment(homeFragment);
     }
 
-    private void setCurrentFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl_fragment, fragment).commit();
+    public int setCurrentFragment(Fragment fragment) {
+        return getSupportFragmentManager().beginTransaction().replace(R.id.fl_fragment, fragment).commit();
+    }
+
+    public void setCurrentFragmentWithBackStack(Fragment fragment) {
+        if (fragment != currentFragment) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fl_fragment, fragment)
+                    .addToBackStack(null) // Add this line to enable back button functionality
+                    .commit();
+            currentFragment = fragment;
+        }
     }
 }

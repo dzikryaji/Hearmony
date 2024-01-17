@@ -1,8 +1,8 @@
 package das.mobile.hearmony.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import das.mobile.hearmony.R;
+import das.mobile.hearmony.activity.MainActivity;
 import das.mobile.hearmony.adapter.InsightPagerAdapter;
 import das.mobile.hearmony.databinding.FragmentInsightBinding;
 
@@ -22,15 +24,19 @@ public class InsightFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Intent intent = new Intent(getActivity(), HomeFragment.class);
-                startActivity(intent);
-                getActivity().finish();
+                // Handle the back press event here
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if (mainActivity != null) {
+                    // Use the existing bottom navigation logic to switch to the HomeFragment
+                    MenuItem item = mainActivity.binding.bottomNav.getMenu().findItem(R.id.nav_home);
+                    item.setChecked(true);
+                    mainActivity.setCurrentFragment(new HomeFragment(mainActivity));
+                }
             }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+        });
     }
 
     @Override
