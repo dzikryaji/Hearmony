@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import das.mobile.hearmony.activity.DoctorProfileActivity;
@@ -22,7 +22,7 @@ import das.mobile.hearmony.model.Psikolog;
 
 public class PsychologistAdapter extends RecyclerView.Adapter<PsychologistAdapter.PsychologistViewHolder> {
     private final Context context;
-    private final List<Psikolog> psikologList;
+    private List<Psikolog> psikologList;
 
     public PsychologistAdapter(Context context, List<Psikolog> psikologList) {
         this.context = context;
@@ -35,6 +35,11 @@ public class PsychologistAdapter extends RecyclerView.Adapter<PsychologistAdapte
         return new PsychologistViewHolder(ItemPsychologistBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
+    public void setFilteredList(ArrayList<Psikolog> filteredList) {
+        this.psikologList = filteredList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull PsychologistViewHolder holder, int position) {
 
@@ -42,7 +47,8 @@ public class PsychologistAdapter extends RecyclerView.Adapter<PsychologistAdapte
         final StorageReference imgRef = FirebaseStorage.getInstance().getReference().child("/psikolog/psikolog" + psikolog.getId() + ".jpg");
 
         imgRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            Picasso.get().load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(holder.binding.ivProfile);
+            Picasso.get().load(uri)
+                    .into(holder.binding.ivProfile);
         }).addOnFailureListener(exception -> {
             Log.d("error===========", exception.getMessage());
         });
