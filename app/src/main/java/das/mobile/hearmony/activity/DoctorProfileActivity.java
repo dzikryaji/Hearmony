@@ -24,9 +24,14 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.TreeMap;
 
 import das.mobile.hearmony.adapter.ConsultationDateAdapter;
 import das.mobile.hearmony.databinding.ActivityDoctorProfileBinding;
@@ -130,7 +135,9 @@ public class DoctorProfileActivity extends AppCompatActivity {
     }
 
     private void setUpAdapter() {
-        adapter = new ConsultationDateAdapter(this, psikolog, dateList);
+        TreeMap<String, List<Consult>> dateListMap = groupConsultByDate(dateList);
+        List<String> dates = new ArrayList<>(dateListMap.keySet());
+        adapter = new ConsultationDateAdapter(this, dates, dateListMap);
         binding.rvConsultationDate.setLayoutManager(new LinearLayoutManager(this));
         binding.rvConsultationDate.setAdapter(adapter);
 
@@ -138,10 +145,55 @@ public class DoctorProfileActivity extends AppCompatActivity {
             if (adapter.getCheckedDay() > -1) {
                 Intent intent = new Intent(this, OrderDataActivity.class);
                 intent.putExtra("psikolog", psikolog);
+
+                //Get Consult
+                int checkedDay = adapter.getCheckedDay();
+                int checkedHour = adapter.getCheckedHour();
+                String date = dates.get(checkedDay);
+                Consult consult = dateListMap.get(date).get(checkedHour);
+
                 startActivity(intent);
             } else {
                 Toast.makeText(this, "Please select consultation time", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private TreeMap<String, List<Consult>> groupConsultByDate(List<Consult> consults) {
+        TreeMap<String, List<Consult>> groupedConsults = new TreeMap<>(Comparator.reverseOrder());
+
+        for (Consult consult : consults) {
+            String date = consult.getDate();
+
+            //Check if the date is in the past
+            if (isDateInPast(date)){
+                continue;
+            }
+
+            // Check if the date is already a key in the map
+            if (groupedConsults.containsKey(date)) {
+                // If yes, add the consult to the existing list
+                groupedConsults.get(date).add(consult);
+            } else {
+                // If no, create a new list with the consult and put it in the map
+                List<Consult> consultList = new ArrayList<>();
+                consultList.add(consult);
+                groupedConsults.put(date, consultList);
+            }
+        }
+
+        return groupedConsults;
+    }
+
+    private boolean isDateInPast(String dateStr) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date currentDate = new Date();
+            Date consultDate = dateFormat.parse(dateStr);
+            return consultDate.before(currentDate);
+        } catch (ParseException e) {
+            e.printStackTrace(); // Handle the exception based on your needs
+            return false; // Assume the date is not in the past if there's an error
+        }
     }
 }
