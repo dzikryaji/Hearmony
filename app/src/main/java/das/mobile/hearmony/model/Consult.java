@@ -4,7 +4,7 @@ public class Consult {
     private String consultId;
     private String userId;
     private String price;
-    private String appointmentHour;
+    private String hour;
     private String date;
 
     public String getConsultId() {
@@ -31,12 +31,12 @@ public class Consult {
         this.price = price;
     }
 
-    public String getAppointmentHour() {
-        return appointmentHour;
+    public String getHour() {
+        return hour;
     }
 
-    public void setAppointmentHour(String appointmentHour) {
-        this.appointmentHour = appointmentHour;
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 
     public String getDate() {
@@ -50,11 +50,11 @@ public class Consult {
     public Consult() {
     }
 
-    public Consult(String consultId, String userId, String price, String appointmentHour, String date) {
+    public Consult(String consultId, String userId, String price, String hour, String date) {
         this.consultId = consultId;
         this.userId = userId;
         this.price = price;
-        this.appointmentHour = appointmentHour;
+        this.hour = hour;
         this.date = date;
     }
 }

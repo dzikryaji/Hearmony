@@ -1,6 +1,8 @@
 package das.mobile.hearmony.fragment;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,18 +29,33 @@ public class ChatConsultationFragment extends Fragment {
     FragmentChatConsultationBinding binding;
     PsychologistAdapter adapter;
     ArrayList<Psikolog> psychologistList;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    ArrayList<Psikolog> filteredList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentChatConsultationBinding.inflate(inflater, container, false);
         psychologistList = new ArrayList<>();
+        filteredList = new ArrayList<>();
         setUpFirebaseRecyclerView();
+
+        // Set up the TextWatcher for the search EditText
+        binding.search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Filter the data based on the search text
+                filterData(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
@@ -72,8 +89,24 @@ public class ChatConsultationFragment extends Fragment {
         }
 
         Collections.reverse(psychologistList);
+        setUpAdapter();
+        filterData(binding.search.getText().toString());
     }
 
+
+    private void filterData(String searchText) {
+        filteredList.clear();
+
+        for (Psikolog psikolog : psychologistList) {
+            // Filter logic based on the name or any other attribute
+            if (psikolog.getName().toLowerCase().contains(searchText.toLowerCase())) {
+                filteredList.add(psikolog);
+            }
+        }
+
+        // Update the adapter with the filtered data
+        adapter.setFilteredList(filteredList);
+    }
 
     private void setUpAdapter() {
         adapter = new PsychologistAdapter(getActivity(), psychologistList);
