@@ -12,6 +12,8 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import das.mobile.hearmony.adapter.ConsultationDateAdapter;
+import das.mobile.hearmony.adapter.ConsultationHourAdapter;
 import das.mobile.hearmony.databinding.ActivityMakeAppoinmentBinding;
 import das.mobile.hearmony.model.Psikolog;
 
@@ -33,12 +35,20 @@ public class MakeAppoinmentActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
     }
 
     private void setPsikologData(Psikolog psikolog) {
+        String selectedDate = getIntent().getStringExtra("selectedDate");
+        String selectedHour = getIntent().getStringExtra("selectedHour");
+
+        binding.selectedDate.setText(ConsultationDateAdapter.formatDateString(selectedDate));
+        binding.selectedHour.setText(ConsultationHourAdapter.formatHour(selectedHour));
+
+        binding.ivBack.setOnClickListener(view -> finish());
+
         binding.tvDoctorName.setText(psikolog.getName());
         binding.category.setText(psikolog.getRoles());
         binding.officeName.setText(psikolog.getOfficeName());

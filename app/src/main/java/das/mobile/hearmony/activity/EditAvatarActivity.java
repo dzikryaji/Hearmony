@@ -72,7 +72,6 @@ public class EditAvatarActivity extends AppCompatActivity {
         radioButtons.add(binding.rbAvatar5);
         radioButtons.add(binding.rbAvatar6);
         radioButtons.add(binding.rbAvatar7);
-        radioButtons.add(binding.rbAvatar8);
 
         // Set listeners for each radio button
         for (RadioButton radio : radioButtons) {

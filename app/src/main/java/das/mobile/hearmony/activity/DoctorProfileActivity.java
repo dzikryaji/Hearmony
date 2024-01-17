@@ -52,7 +52,6 @@ public class DoctorProfileActivity extends AppCompatActivity {
         binding = ActivityDoctorProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         psikolog = getIntent().getParcelableExtra("psikolog");
-
         setUpFirebaseRecycleView();
 
         binding.ivBack.setOnClickListener(view -> { finish(); });
@@ -143,21 +142,22 @@ public class DoctorProfileActivity extends AppCompatActivity {
 
         binding.btnMakeAppointment.setOnClickListener(view -> {
             if (adapter.getCheckedDay() > -1) {
-                Intent intent = new Intent(this, OrderDataActivity.class);
-                intent.putExtra("psikolog", psikolog);
-
-                //Get Consult
                 int checkedDay = adapter.getCheckedDay();
                 int checkedHour = adapter.getCheckedHour();
                 String date = dates.get(checkedDay);
                 Consult consult = dateListMap.get(date).get(checkedHour);
 
-                startActivity(intent);
+                Intent intent = new Intent(this, OrderDataActivity.class);
+                intent.putExtra("psikolog", psikolog);
+                intent.putExtra("selectedDate", date);
+                intent.putExtra("selectedHour", consult.getHour());
+                this.startActivity(intent);
             } else {
                 Toast.makeText(this, "Please select consultation time", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     private TreeMap<String, List<Consult>> groupConsultByDate(List<Consult> consults) {
         TreeMap<String, List<Consult>> groupedConsults = new TreeMap<>(Comparator.reverseOrder());

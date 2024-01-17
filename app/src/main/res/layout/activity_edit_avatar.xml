@@ -345,14 +345,6 @@
                             android:layout_marginTop="6dp"
                             android:src="@drawable/img_avatar8" />
 
-                        <RadioButton
-                            android:id="@+id/rb_avatar8"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:background="@drawable/bg_radio_avatar"
-                            android:button="@null" />
-
                     </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
