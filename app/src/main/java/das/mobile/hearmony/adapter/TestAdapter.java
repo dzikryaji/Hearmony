@@ -1,12 +1,14 @@
 package das.mobile.hearmony.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import das.mobile.hearmony.activity.TestActivity;
 import das.mobile.hearmony.databinding.ItemTestBinding;
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder> {
@@ -23,7 +25,10 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TestViewHolder holder, int position) {
-
+        holder.binding.cvContainer.setOnClickListener(view -> {
+            Intent intent = new Intent(context, TestActivity.class);
+            context.startActivity(intent);
+        });
     }
 
     @Override
