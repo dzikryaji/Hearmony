@@ -87,6 +87,6 @@ We extend our sincere thanks to the developers and communities behind these tech
 - Email: a.bnvt15@gmail.com
 
 ## Screenshots
-<img src="screenshot.gif" width=20% height=20%>
+<img src="screenshot.gif" width=40% height=40%>
 
 
