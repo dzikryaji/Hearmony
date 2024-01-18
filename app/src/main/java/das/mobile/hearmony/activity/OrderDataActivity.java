@@ -18,9 +18,12 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import das.mobile.hearmony.adapter.ConsultationDateAdapter;
 import das.mobile.hearmony.adapter.ConsultationHourAdapter;
@@ -75,9 +78,11 @@ public class OrderDataActivity extends AppCompatActivity {
     private void setPsikologData(Psikolog psikolog) {
         String selectedDate = getIntent().getStringExtra("selectedDate");
         String selectedHour = getIntent().getStringExtra("selectedHour");
+        String selectedPrice = getIntent().getStringExtra("selectedPrice");
 
         binding.selectedDate.setText(ConsultationDateAdapter.formatDateString(selectedDate));
         binding.selectedHour.setText(ConsultationHourAdapter.formatHour(selectedHour));
+        binding.selectedHour.setText("Consultation fee: " + formatToRupiah(selectedPrice));
 
         binding.ivBack.setOnClickListener(view -> finish());
         binding.btnMakeAppointment.setOnClickListener(view -> {
@@ -112,5 +117,11 @@ public class OrderDataActivity extends AppCompatActivity {
             e.printStackTrace();
             return ""; // Handle the exception based on your needs
         }
+    }
+
+    public static String formatToRupiah(String price) {
+        double amount = Double.parseDouble(price);
+        NumberFormat formatter = DecimalFormat.getCurrencyInstance(new Locale("id", "ID"));
+        return formatter.format(amount);
     }
 }

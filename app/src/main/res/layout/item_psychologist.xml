@@ -116,7 +116,7 @@
                             android:src="@drawable/ic_office" />
 
                         <TextView
-                            android:id="@+id/officeLocation"
+                            android:id="@+id/officeName"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
@@ -142,7 +142,7 @@
                             android:src="@drawable/ic_distance" />
 
                         <TextView
-                            android:id="@+id/email"
+                            android:id="@+id/officeLocation"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -185,11 +185,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/manrope_medium"
-                android:text="Consultation Fees"
+                android:text="Consultation Fees Start From"
                 android:textColor="@color/black"
                 android:textSize="8sp" />
 
             <TextView
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
