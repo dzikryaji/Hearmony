@@ -1,5 +1,6 @@
 # Hearmony
-**Hearmony** is a mobile application designed to support family harmony <br>Developed by **tim otw mapan**
+**Hearmony** is a mobile application designed to support family harmony  
+Developed by **tim otw mapan** [HF24-39]
 
 ## Team Details
 
@@ -14,38 +15,76 @@
 - Bonaventura Julio Putra Nandika
 
 ## Main Features
-- Insight Chamber (prototype release)
-<br>This feature presents news, articles, and educational tips that can add to family harmony, such as: parenting materials, healthy relationships, how to achieve family goals, manage finances, and others.
-- Relationship’s Goal Setter (under development)
-<br>This feature helps married couples achieve their goals especially in the financial context. In this feature, users can see simulated savings results in various investment instruments. Users can also explore property price information in this feature which will be supported by artificial intelligence features as a financial assistant.
-- Consult Chat (under development)
-<br>This feature allows users to consult with psychologists or therapists both online and offline regarding household problems. The application will provide the address of the psychologist or therapist (if you want to consult offline) with the fee and profile of the psychologist or therapist listed in the application.
+1. **Insight Chamber (prototype release)**
+   - This feature presents news, articles, and educational tips that can add to family harmony, such as parenting materials, healthy relationships, achieving family goals, managing finances, and more.
+
+2. **Relationship’s Goal Setter (prototype release)**
+   - Helps married couples achieve their goals, especially in the financial context.
+   - Users can see simulated savings results in various investment instruments.
+   - Explore property price information supported by artificial intelligence features as a financial assistant.
+
+3. **Consult Chat (under development)**
+   - Allows users to consult with psychologists or therapists both online and offline regarding household problems.
+   - The application provides the address, fee, and profile of psychologists or therapists for offline consultations.
 
 ## Getting Started
 
-### Installation
-- Use apps that have been released in the release section. 
-- Install the application onto your mobile device. 
-- Make sure you are on the network.
-
 ## Usage
-- Please register an account first by clicking the "Create new account" button. You can also log in using your google account.
-- Login to the application when your registration is successful.
-- Enter the profile menu and configure the profile according to your preferences.
-- Use the existing features in the app as needed.
-<br>*For now, only the insight chamber feature can be used.
+To get started with this project, follow the steps below:
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-username/your-repository.git
+   ```
+
+2. **Match local SDK:**
+- Ensure that your local Android SDK version matches the project requirements.
+- Update your local SDK version if necessary.
+
+3. **Build the App:**
+- Build and run the application on your Android device or emulator.
+
 
 ## License
-Anyone can modify and use this app without it being commercialized. This app was developed to be submitted for the hackfest 2024 competition.
+
+**Hackfest 2024 Competition License**
+
+This app is provided under the terms of the Hackfest 2024 Competition License.
+
+### Permissions
+
+- Anyone is allowed to modify and use this app for non-commercial purposes.
+
+### Limitations
+
+- Commercial use of this app is not permitted.
+
+### Disclaimer
+
+This app is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+### Hackfest 2024 Competition
+
+This app was developed specifically for submission to the Hackfest 2024 competition.
 
 ## Acknowledgments
+
+This project relies on the contributions and technologies of various platforms and tools. We would like to express our gratitude to the following:
+
+- **Google Firebase**: Serving as the primary storage solution, Firebase provides a reliable and scalable platform for storing and retrieving data.
+
+- **Android**: The fundamental concepts of Android have played a crucial role in the development of this project, providing the basis for our mobile application.
+
+- **Google Finance**: As the data provider, Google Finance has been instrumental in supplying the financial data necessary for the functionality of this project.
+
+- **Google Apps Script**: The project utilizes Google Apps Script for API generation, enabling seamless communication and interaction between different components.
+
+We extend our sincere thanks to the developers and communities behind these technologies, as they have significantly contributed to the success of this project.
 
 
 ## Contact
 - Email: reynaldih@gmail.com
-
-## Project Status
-Project is under development
+- Email: a.bnvt15@gmail.com
 
 ## Screenshots
 <img src="screenshot.gif" width=20% height=20%>
