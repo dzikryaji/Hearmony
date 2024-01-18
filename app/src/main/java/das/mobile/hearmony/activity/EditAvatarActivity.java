@@ -1,9 +1,9 @@
 package das.mobile.hearmony.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +29,7 @@ public class EditAvatarActivity extends AppCompatActivity {
     private ActivityEditAvatarBinding binding;
     private DatabaseReference usersRef;
     private FirebaseAuth mAuth;
+    private int selectedIndex = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class EditAvatarActivity extends AppCompatActivity {
                     });
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle errors if any
@@ -80,8 +82,13 @@ public class EditAvatarActivity extends AppCompatActivity {
 
         binding.ivBack.setOnClickListener(view -> finish());
         binding.savebutton.setOnClickListener(view -> {
-            Intent intent = new Intent(EditAvatarActivity.this, EditProfileActivity.class);
-            startActivity(intent);
+            if (selectedIndex == -1) {
+                Toast.makeText(this, "Please Select Avatar", Toast.LENGTH_SHORT).show();
+            } else {
+                // Update Firebase Realtime Database with the selected index
+                usersRef.setValue(String.valueOf(selectedIndex));
+                finish();
+            }
         });
     }
 
@@ -92,9 +99,6 @@ public class EditAvatarActivity extends AppCompatActivity {
         clickedRadioButton.setChecked(true);
 
         // Get the index of the clicked radio button
-        int selectedIndex = radioButtons.indexOf(clickedRadioButton) + 1;
-
-        // Update Firebase Realtime Database with the selected index
-        usersRef.setValue(selectedIndex);
+        selectedIndex = radioButtons.indexOf(clickedRadioButton) + 1;
     }
 }

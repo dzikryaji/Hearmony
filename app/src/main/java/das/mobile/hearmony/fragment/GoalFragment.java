@@ -1,6 +1,5 @@
 package das.mobile.hearmony.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -44,8 +43,6 @@ import das.mobile.hearmony.R;
 import das.mobile.hearmony.activity.MainActivity;
 import das.mobile.hearmony.adapter.InvestationAdapter;
 import das.mobile.hearmony.adapter.RecommendationAdapter;
-import das.mobile.hearmony.R;
-import das.mobile.hearmony.activity.MainActivity;
 import das.mobile.hearmony.databinding.FragmentGoalBinding;
 import das.mobile.hearmony.model.Recommendation;
 
@@ -126,8 +123,15 @@ public class GoalFragment extends Fragment {
         binding = FragmentGoalBinding.inflate(getLayoutInflater());
 
         binding.btnSearch.setOnClickListener(view -> {
-            setUpFirebaseRecyclerView();
-            binding.llResult.setVisibility(View.VISIBLE);
+            String savingTenor = binding.etSavingTenor.getText().toString();
+            String goalsName = binding.etGoalsName.getText().toString();
+            String targetFunds = binding.etTargetFunds.getText().toString();
+            if (savingTenor.isEmpty() || goalsName.isEmpty() || targetFunds.isEmpty()) {
+                Toast.makeText(getActivity(), "Please Fill All Necessary Input", Toast.LENGTH_SHORT).show();
+            } else {
+                setUpFirebaseRecyclerView();
+                binding.llResult.setVisibility(View.VISIBLE);
+            }
         });
 
         binding.etTargetFunds.addTextChangedListener(new TextWatcher() {
@@ -144,7 +148,7 @@ public class GoalFragment extends Fragment {
                     String cleanString = charSequence.toString().replaceAll("[Rp.,]", "");
 
                     double parsed = Double.parseDouble(cleanString);
-                    String formatted = NumberFormat.getCurrencyInstance(new Locale("id", "ID")).format((parsed/100));
+                    String formatted = NumberFormat.getCurrencyInstance(new Locale("id", "ID")).format((parsed / 100));
 
                     current = formatted;
                     binding.etTargetFunds.setText(formatted);
@@ -186,7 +190,7 @@ public class GoalFragment extends Fragment {
 
         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             Recommendation recommendation = snapshot.getValue(Recommendation.class);
-            if (recommendation != null && Long.parseLong(recommendation.getPrice())<=(Long.parseLong(targetFunds.replaceAll("[^\\d]", "").replaceAll("\\d{2}$", "")))) {
+            if (recommendation != null && Long.parseLong(recommendation.getPrice()) <= (Long.parseLong(targetFunds.replaceAll("[^\\d]", "").replaceAll("\\d{2}$", "")))) {
                 recommendationList.add(recommendation);
             }
         }
@@ -227,7 +231,7 @@ public class GoalFragment extends Fragment {
         items.add("Vacation");
         items.add("Residence");
         items.add("Laptop");
-        items.add("Mobile");
+        items.add("Mobile Device");
         items.add("Others");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.spinner, items);

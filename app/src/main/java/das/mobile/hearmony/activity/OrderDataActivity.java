@@ -82,7 +82,7 @@ public class OrderDataActivity extends AppCompatActivity {
 
         binding.selectedDate.setText(ConsultationDateAdapter.formatDateString(selectedDate));
         binding.selectedHour.setText(ConsultationHourAdapter.formatHour(selectedHour));
-        binding.selectedHour.setText("Consultation fee: " + formatToRupiah(selectedPrice));
+        binding.price.setText("Consultation fee: " + formatToRupiah(selectedPrice));
 
         binding.ivBack.setOnClickListener(view -> finish());
         binding.btnMakeAppointment.setOnClickListener(view -> {

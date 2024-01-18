@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
                     if (psikolog != null) {
                         binding.tvName.setText(psikolog.getName());
                         binding.category.setText(psikolog.getRoles());
-                        binding.officeName.setText(psikolog.getOfficeLocation());
+                        binding.officeName.setText(psikolog.getOfficeName());
                         binding.officeLocation.setText(psikolog.getOfficeLocation());
                         binding.btnMakeAppointment.setOnClickListener(view -> {
                             Intent intent = new Intent(getActivity(), DoctorProfileActivity.class);

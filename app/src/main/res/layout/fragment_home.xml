@@ -68,9 +68,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/manrope_extrabold"
-                        android:text="Reynaldi Holtrop"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        tools:text="Reynaldi Holtrop" />
 
                 </LinearLayout>
 
@@ -388,7 +388,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_weight="1"
-                                android:orientation="vertical">
+                                android:orientation="vertical">\
 
                                 <TextView
                                     android:id="@+id/tv_name"
@@ -397,7 +397,7 @@
                                     android:ellipsize="end"
                                     android:fontFamily="@font/manrope_semibold"
                                     android:maxLines="1"
-                                    android:text="Setiyo Purwanto, S.Psi.,M.Si."
+                                    tools:text="Setiyo Purwanto, S.Psi.,M.Si."
                                     android:textColor="@color/white"
                                     android:textSize="12sp" />
 
@@ -524,7 +524,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:fontFamily="@font/manrope_medium"
-                            android:text="Rp. 209.000"
+                            tools:text="Rp. 209.000"
                             android:textColor="@color/white"
                             android:textSize="10sp" />
 
@@ -643,8 +643,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/img_tips" />
-
+                                tools:src="@drawable/img_tips" />
                         </androidx.cardview.widget.CardView>
 
                         <LinearLayout
@@ -664,7 +663,7 @@
                                 android:gravity="center"
                                 android:paddingHorizontal="6dp"
                                 android:paddingVertical="1dp"
-                                android:text="Blog"
+                                tools:text="Blog"
                                 android:textColor="@color/white"
                                 android:textSize="9sp" />
 
@@ -673,7 +672,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/manrope_bold"
-                                android:text="5 LDR Tips for Beginners, Don't Forget the Little Things in Your Relationship"
+                                tools:text="5 LDR Tips for Beginners, Don't Forget the Little Things in Your Relationship"
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -696,7 +695,7 @@
                                     android:layout_marginStart="4dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/manrope"
-                                    android:text="Sunday, January/23/2024"
+                                    tools:text="Sunday, January/23/2024"
                                     android:textColor="#8897AE"
                                     android:textSize="8sp" />
 

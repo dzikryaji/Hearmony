@@ -256,6 +256,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:layout_marginEnd="4dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -266,7 +267,7 @@
                                 android:fontFamily="@font/manrope"
                                 android:text="Waskita: Psychological Consultant Bureau"
                                 android:textColor="@color/black"
-                                android:textSize="8sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/officeLocation"
@@ -276,7 +277,7 @@
                                 android:fontFamily="@font/manrope_medium"
                                 android:text="Jl.Soreang Banjaran, Soreang, Kab.Bandung, Jawa Barat 40911"
                                 android:textColor="@color/black"
-                                android:textSize="8sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -286,7 +287,7 @@
                                 android:fontFamily="@font/manrope_medium"
                                 android:text="14.23 km from you"
                                 android:textColor="@color/black"
-                                android:textSize="8sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/price"
@@ -294,9 +295,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:fontFamily="@font/manrope_medium"
-                                android:text=""
+                                tools:text="Consultation fee: Rp250.00,00"
                                 android:textColor="#FF7A00"
-                                android:textSize="6sp" />
+                                android:textSize="10sp" />
 
 
                         </LinearLayout>

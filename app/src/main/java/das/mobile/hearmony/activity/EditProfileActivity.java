@@ -114,8 +114,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
             binding.etName.setText(newName);
             binding.etPhone.setText(newPhone);
-            Toast.makeText(EditProfileActivity.this, "Data changes saved successfully.",
+            Toast.makeText(getApplicationContext(), "Data changes saved successfully.",
                     Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
     @Override

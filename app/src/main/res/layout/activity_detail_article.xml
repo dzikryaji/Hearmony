@@ -249,7 +249,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
-            android:text="5 Comments"/>
+            android:text="0 Comments"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_comment"

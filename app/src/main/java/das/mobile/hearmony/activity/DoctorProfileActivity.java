@@ -40,7 +40,7 @@ import das.mobile.hearmony.model.Psikolog;
 
 public class DoctorProfileActivity extends AppCompatActivity {
 
-    ActivityDoctorProfileBinding binding;
+    public ActivityDoctorProfileBinding binding;
     private Psikolog psikolog;
     private List<Consult> dateList = new ArrayList<>();
     private DatabaseReference dateIdRef;
