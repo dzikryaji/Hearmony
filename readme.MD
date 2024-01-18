@@ -34,7 +34,7 @@ To get started with this project, follow the steps below:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/dzikryaji/Hearmony.git
    ```
 
 2. **Match local SDK:**
