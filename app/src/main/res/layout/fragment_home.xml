@@ -295,10 +295,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
                 android:gravity="top|center_horizontal"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/ll_harmony_score">
+                app:layout_constraintTop_toBottomOf="@id/ll_harmony_score"
+                tools:layout_editor_absoluteX="-30dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -469,7 +469,7 @@
                                         app:tint="@color/white" />
 
                                     <TextView
-                                        android:id="@+id/email"
+                                        android:id="@+id/officeName"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
@@ -519,6 +519,7 @@
                             android:textSize="8sp" />
 
                         <TextView
+                            android:id="@+id/price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
@@ -543,12 +544,12 @@
                         android:src="@drawable/img_tips" />
 
                     <LinearLayout
-                        android:paddingTop="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingStart="16dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingStart="16dp"
+                        android:paddingTop="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -571,12 +572,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
+                            android:layout_marginBottom="5dp"
                             android:background="@drawable/bg_button_membership"
                             android:minWidth="0dp"
                             android:minHeight="0dp"
                             android:paddingHorizontal="6dp"
                             android:paddingVertical="4dp"
-                            android:layout_marginBottom="5dp"
                             android:text="Read More"
                             android:textSize="7dp" />
 
@@ -598,7 +599,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/manrope_bold"
-                        android:text="Popular Insight"
+                        android:text="Newest Insight"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -625,6 +626,7 @@
                     app:cardElevation="5dp">
 
                     <LinearLayout
+                        android:id="@+id/insight_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -637,6 +639,7 @@
                             app:cardCornerRadius="5dp">
 
                             <ImageView
+                                android:id="@+id/insight_thumbnail"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
@@ -652,6 +655,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/insight_category"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/bg_profile_badge"
@@ -665,6 +669,7 @@
                                 android:textSize="9sp" />
 
                             <TextView
+                                android:id="@+id/insight_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/manrope_bold"
@@ -685,6 +690,7 @@
                                     android:src="@drawable/ic_date" />
 
                                 <TextView
+                                    android:id="@+id/insight_timestamt"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="4dp"

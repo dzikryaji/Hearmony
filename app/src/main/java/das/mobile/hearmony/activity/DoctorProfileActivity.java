@@ -89,6 +89,37 @@ public class DoctorProfileActivity extends AppCompatActivity {
         });
     }
 
+    private void setUpAdapter() {
+        TreeMap<String, List<Consult>> dateListMap = groupConsultByDate(dateList);
+        List<String> dates = new ArrayList<>(dateListMap.keySet());
+        adapter = new ConsultationDateAdapter(this, dates, dateListMap);
+        binding.rvConsultationDate.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvConsultationDate.setAdapter(adapter);
+
+        binding.btnMakeAppointment.setOnClickListener(view -> {
+            if (adapter.getCheckedDay() > -1) {
+                int checkedDay = adapter.getCheckedDay();
+                int checkedHour = adapter.getCheckedHour();
+                String date = dates.get(checkedDay);
+                Consult consult = dateListMap.get(date).get(checkedHour);
+
+                // Assuming getPrice() is a method in the Consult class to retrieve the price
+                String price = consult.getPrice();
+                binding.price.setText("Consultation fee: " + OrderDataActivity.formatToRupiah(price));
+
+                Intent intent = new Intent(this, OrderDataActivity.class);
+                intent.putExtra("psikolog", psikolog);
+                intent.putExtra("selectedDate", date);
+                intent.putExtra("selectedHour", consult.getHour());
+                intent.putExtra("selectedPrice", price);
+                this.startActivity(intent);
+            } else {
+                Toast.makeText(this, "Please select consultation time", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
     private void setPsikologData(Psikolog psikolog) {
         binding.tvName.setText(psikolog.getName());
         binding.roles.setText(psikolog.getRoles());
@@ -98,6 +129,7 @@ public class DoctorProfileActivity extends AppCompatActivity {
         binding.tvMedicalTreatmentDescription.setText(psikolog.getTreatment());
         binding.tvPracticalExperienceDescription.setText(psikolog.getExperience());
         binding.tvEducationalBackgroundDescription.setText(psikolog.getEducation());
+
     }
 
     private void setProfileImage(Psikolog psikolog) {
@@ -132,32 +164,6 @@ public class DoctorProfileActivity extends AppCompatActivity {
         }
         Collections.reverse(dateList);
     }
-
-    private void setUpAdapter() {
-        TreeMap<String, List<Consult>> dateListMap = groupConsultByDate(dateList);
-        List<String> dates = new ArrayList<>(dateListMap.keySet());
-        adapter = new ConsultationDateAdapter(this, dates, dateListMap);
-        binding.rvConsultationDate.setLayoutManager(new LinearLayoutManager(this));
-        binding.rvConsultationDate.setAdapter(adapter);
-
-        binding.btnMakeAppointment.setOnClickListener(view -> {
-            if (adapter.getCheckedDay() > -1) {
-                int checkedDay = adapter.getCheckedDay();
-                int checkedHour = adapter.getCheckedHour();
-                String date = dates.get(checkedDay);
-                Consult consult = dateListMap.get(date).get(checkedHour);
-
-                Intent intent = new Intent(this, OrderDataActivity.class);
-                intent.putExtra("psikolog", psikolog);
-                intent.putExtra("selectedDate", date);
-                intent.putExtra("selectedHour", consult.getHour());
-                this.startActivity(intent);
-            } else {
-                Toast.makeText(this, "Please select consultation time", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 
     private TreeMap<String, List<Consult>> groupConsultByDate(List<Consult> consults) {
         TreeMap<String, List<Consult>> groupedConsults = new TreeMap<>(Comparator.reverseOrder());

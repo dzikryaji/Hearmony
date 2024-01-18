@@ -230,10 +230,10 @@
                                 android:textSize="6sp" />
 
                             <TextView
+                                android:id="@+id/price"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/manrope_medium"
-                                android:text="Consultation Fee Rp. 209,000"
                                 android:textColor="@color/primary_green"
                                 android:textSize="6sp" />
 
