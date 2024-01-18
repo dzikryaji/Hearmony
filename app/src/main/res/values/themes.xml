@@ -57,4 +57,18 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="TabTextStyleScore" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/manrope_extralight</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="TabTextStyleScoreSelected" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/manrope_extrabold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
 </resources>

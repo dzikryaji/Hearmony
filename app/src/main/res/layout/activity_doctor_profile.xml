@@ -147,7 +147,7 @@
                                     android:fontFamily="@font/manrope_medium"
                                     android:text="Family Psychologist"
                                     android:textColor="@color/black"
-                                    android:textSize="6sp" />
+                                    android:textSize="10sp" />
 
 
                             </LinearLayout>
@@ -176,7 +176,7 @@
                             android:fontFamily="@font/manrope_medium"
                             android:text="100%"
                             android:textColor="#2A7FBD"
-                            android:textSize="5sp" />
+                            android:textSize="8sp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -186,7 +186,7 @@
                             android:fontFamily="@font/manrope_medium"
                             android:text="10 patient"
                             android:textColor="@color/black"
-                            android:textSize="5sp" />
+                            android:textSize="8sp" />
 
                         <TextView
                             android:id="@+id/tv_leave_review"
@@ -195,7 +195,7 @@
                             android:fontFamily="@font/manrope_medium"
                             android:text="+Leave a Review"
                             android:textColor="#2A7FBD"
-                            android:textSize="6sp" />
+                            android:textSize="8sp" />
 
                     </LinearLayout>
 
@@ -266,7 +266,7 @@
                                 android:fontFamily="@font/manrope"
                                 android:text="Waskita: Psychological Consultant Bureau"
                                 android:textColor="@color/black"
-                                android:textSize="6sp" />
+                                android:textSize="8sp" />
 
                             <TextView
                                 android:id="@+id/officeLocation"
@@ -276,7 +276,7 @@
                                 android:fontFamily="@font/manrope_medium"
                                 android:text="Jl.Soreang Banjaran, Soreang, Kab.Bandung, Jawa Barat 40911"
                                 android:textColor="@color/black"
-                                android:textSize="6sp" />
+                                android:textSize="8sp" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -286,7 +286,7 @@
                                 android:fontFamily="@font/manrope_medium"
                                 android:text="14.23 km from you"
                                 android:textColor="@color/black"
-                                android:textSize="6sp" />
+                                android:textSize="8sp" />
 
                             <TextView
                                 android:id="@+id/price"
@@ -321,7 +321,7 @@
                         android:fontFamily="@font/manrope_medium"
                         android:text="View All Locations and Schedules"
                         android:textColor="#2A7FBD"
-                        android:textSize="6sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -349,10 +349,10 @@
                         android:id="@+id/tv_doctor_profile_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/manrope_semibold"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Doctor Profile"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_doctor_profile_description"
@@ -362,7 +362,7 @@
                         android:fontFamily="@font/manrope"
                         android:text="I provide professional services and am known for my friendliness and patience with patients. The focus of my field is dealing with family-related problems ranging from counseling, hypnotherapy, to mindfulness therapy."
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
 
                 </LinearLayout>
@@ -391,10 +391,10 @@
                         android:id="@+id/tv_medical_treatment_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/manrope_semibold"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Medical Treatment"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_medical_treatment_description"
@@ -404,7 +404,7 @@
                         android:fontFamily="@font/manrope"
                         android:text="I provide professional services and am known for my friendliness and patience with patients. The focus of my field is dealing with family-related problems ranging from counseling, hypnotherapy, to mindfulness therapy."
                         android:textColor="@color/black"
-                        android:textSize="9sp"
+                        android:textSize="10sp"
                         android:visibility="gone" />
 
 
@@ -434,10 +434,10 @@
                         android:id="@+id/tv_practical_experience_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/manrope_semibold"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Practical Experience"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_practical_experience_description"
@@ -447,7 +447,7 @@
                         android:fontFamily="@font/manrope"
                         android:text="I provide professional services and am known for my friendliness and patience with patients. The focus of my field is dealing with family-related problems ranging from counseling, hypnotherapy, to mindfulness therapy."
                         android:textColor="@color/black"
-                        android:textSize="9sp"
+                        android:textSize="10sp"
                         android:visibility="gone" />
 
 
@@ -477,10 +477,10 @@
                         android:id="@+id/tv_educational_background_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/manrope_semibold"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Educational Background"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_educational_background_description"
@@ -490,7 +490,7 @@
                         android:fontFamily="@font/manrope"
                         android:text="I provide professional services and am known for my friendliness and patience with patients. The focus of my field is dealing with family-related problems ranging from counseling, hypnotherapy, to mindfulness therapy."
                         android:textColor="@color/black"
-                        android:textSize="9sp"
+                        android:textSize="10sp"
                         android:visibility="gone" />
 
 

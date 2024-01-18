@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_order_data"
                 android:layout_width="match_parent"
@@ -71,10 +72,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:fontFamily="@font/manrope_semibold"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Your Doctor of Choice"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -152,7 +153,7 @@
                                     android:fontFamily="@font/manrope_medium"
                                     android:text="Family Psychologist"
                                     android:textColor="@color/black"
-                                    android:textSize="6sp" />
+                                    android:textSize="10sp" />
 
 
                             </LinearLayout>
@@ -166,8 +167,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/manrope_semibold"
-                        android:text="Your Doctor of Choice"
+                        android:fontFamily="@font/manrope_bold"
+                        android:text="Nearest Practice Locations and Schedules"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -208,7 +209,7 @@
                                 android:fontFamily="@font/manrope_bold"
                                 android:text="Waskita: Psychological Consultant Bureau"
                                 android:textColor="@color/black"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/selected_date"
@@ -218,7 +219,7 @@
                                 android:fontFamily="@font/manrope_medium"
                                 android:text="Monday, January 16 2023 (Tomorrow)"
                                 android:textColor="@color/black"
-                                android:textSize="6sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/selected_hour"
@@ -227,15 +228,16 @@
                                 android:fontFamily="@font/manrope_medium"
                                 android:text="09.00 - 12.00"
                                 android:textColor="@color/black"
-                                android:textSize="6sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/price"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/manrope_medium"
+                                android:text="Consultation Fee Rp. 209,000"
                                 android:textColor="@color/primary_green"
-                                android:textSize="6sp" />
+                                android:textSize="10sp" />
 
 
                         </LinearLayout>
@@ -268,10 +270,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/manrope_semibold"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Orderer Data"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -280,64 +282,64 @@
                         android:fontFamily="@font/manrope_bold"
                         android:text="Information regarding this appointment will be sent to the cell phone number and email below :"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Your Mobile Number"
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
+                        android:text="Your Mobile Number"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_orderer_phone_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="083824369420"
                         android:fontFamily="@font/manrope_medium"
+                        android:text="083824369420"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Your email"
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
+                        android:text="Your email"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_orderer_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="pastimapan@gmail.com"
                         android:fontFamily="@font/manrope_medium"
+                        android:text="pastimapan@gmail.com"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Your Full Name"
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
+                        android:text="Your Full Name"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_orderer_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="John Doe"
                         android:fontFamily="@font/manrope_medium"
+                        android:text="John Doe"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <Button
                         android:id="@+id/btn_make_appointment"
@@ -345,7 +347,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:paddingVertical="10dp"
-                        android:text="Make an Appointment Now"/>
+                        android:text="Make an Appointment Now" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

@@ -295,13 +295,12 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 app:tabGravity="start"
                 app:tabIndicatorHeight="0dp"
                 app:tabMode="scrollable"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextAppearance="@style/TabTextStyle"
-                app:tabTextColor="#D2D7CF" />
+                app:tabSelectedTextAppearance="@style/TabTextStyleScoreSelected"
+                app:tabTextAppearance="@style/TabTextStyleScore"
+                app:tabTextColor="@color/white" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager"

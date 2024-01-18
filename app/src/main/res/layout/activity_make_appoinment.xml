@@ -71,10 +71,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:fontFamily="@font/manrope_semibold"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Your Doctor of Choice"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -152,7 +152,7 @@
                                     android:fontFamily="@font/manrope_medium"
                                     android:text="Family Psychologist"
                                     android:textColor="@color/black"
-                                    android:textSize="6sp" />
+                                    android:textSize="10sp" />
 
 
                             </LinearLayout>
@@ -166,10 +166,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/manrope_semibold"
-                        android:text="Your Doctor of Choice"
+                        android:fontFamily="@font/manrope_bold"
+                        android:text="Nearest Practice Locations and Schedules"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -208,7 +208,7 @@
                                 android:fontFamily="@font/manrope_bold"
                                 android:text="Waskita: Psychological Consultant Bureau"
                                 android:textColor="@color/black"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/selected_date"
@@ -218,7 +218,7 @@
                                 android:fontFamily="@font/manrope_medium"
                                 android:text="Monday, January 16 2023 (Tomorrow)"
                                 android:textColor="@color/black"
-                                android:textSize="6sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:id="@+id/selected_hour"
@@ -227,7 +227,7 @@
                                 android:fontFamily="@font/manrope_medium"
                                 android:text="09.00 - 12.00"
                                 android:textColor="@color/black"
-                                android:textSize="6sp" />
+                                android:textSize="10sp" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -235,7 +235,7 @@
                                 android:fontFamily="@font/manrope_medium"
                                 android:text="Consultation Fee Rp. 209,000"
                                 android:textColor="@color/primary_green"
-                                android:textSize="6sp" />
+                                android:textSize="10sp" />
 
 
                         </LinearLayout>
@@ -268,10 +268,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/manrope_semibold"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Patient Data"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -290,7 +290,7 @@
                         android:text="John Doe"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -299,7 +299,7 @@
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_patient_birthdate"
@@ -309,7 +309,7 @@
                         android:text="15/09/02"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -318,7 +318,7 @@
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_patient_email"
@@ -328,7 +328,7 @@
                         android:text="pastimapan@gmail.com"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -337,7 +337,7 @@
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_patient_phone_number"
@@ -347,7 +347,7 @@
                         android:text="083824369420"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -356,7 +356,7 @@
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_nik_number"
@@ -366,7 +366,7 @@
                         android:text="456789023842467354"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -375,7 +375,7 @@
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_patient_address"
@@ -385,7 +385,7 @@
                         android:text="Bandung"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -394,7 +394,7 @@
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_patient_gender"
@@ -404,7 +404,7 @@
                         android:text="Male"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -413,7 +413,7 @@
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_payment_method"
@@ -423,7 +423,7 @@
                         android:text="Dana"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -432,7 +432,7 @@
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_patient_consultation_history"
@@ -442,7 +442,7 @@
                         android:text="Never"
                         android:fontFamily="@font/manrope_medium"
                         android:textColor="@color/black"
-                        android:textSize="9sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 

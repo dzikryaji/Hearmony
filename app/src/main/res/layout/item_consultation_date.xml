@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/manrope_medium"
         android:text="Monday, January 16 2023"
-        android:textSize="6sp" />
+        android:textSize="10sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_hour"
