@@ -1,5 +1,6 @@
 package das.mobile.hearmony.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import das.mobile.hearmony.R;
+import das.mobile.hearmony.activity.DetailScoreActivity;
 import das.mobile.hearmony.activity.MainActivity;
 import das.mobile.hearmony.databinding.FragmentHomeBinding;
 
@@ -74,6 +76,11 @@ public class HomeFragment extends Fragment {
         setOnClickListenerForFragment(new GoalFragment(), R.id.nav_goal, binding.seeGoalRecommendation);
         setOnClickListenerForFragment(new InsightFragment(), R.id.nav_insight, binding.seeInsight);
         setOnClickListenerForFragment(new ChatConsultationFragment(), R.id.nav_chat, binding.buttonConsultChat);
+
+        binding.tvSeeMoreScore.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), DetailScoreActivity.class);
+            startActivity(intent);
+        });
 
     }
 

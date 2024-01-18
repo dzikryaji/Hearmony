@@ -1,6 +1,5 @@
 package das.mobile.hearmony.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,10 +29,9 @@ import java.util.List;
 import java.util.Locale;
 
 import das.mobile.hearmony.R;
+import das.mobile.hearmony.activity.MainActivity;
 import das.mobile.hearmony.adapter.InvestationAdapter;
 import das.mobile.hearmony.adapter.RecommendationAdapter;
-import das.mobile.hearmony.R;
-import das.mobile.hearmony.activity.MainActivity;
 import das.mobile.hearmony.databinding.FragmentGoalBinding;
 
 public class GoalFragment extends Fragment {
@@ -59,8 +57,8 @@ public class GoalFragment extends Fragment {
                     String bitcoin = quotes.getString("bitcoin now");
 
                     // Update the TextView with the result
-                    binding.test.setText(aapl);
-                    binding.test2.setText(bitcoin);
+//                    binding.test.setText(aapl);
+//                    binding.test2.setText(bitcoin);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }

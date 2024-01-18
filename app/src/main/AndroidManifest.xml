@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Hearmony"
         tools:targetApi="31">
         <activity
+            android:name=".activity.DetailScoreActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MakeAppoinmentActivity"
             android:exported="false" />
         <activity
